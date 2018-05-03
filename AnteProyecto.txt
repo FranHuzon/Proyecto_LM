@@ -1,0 +1,35 @@
+
+Nombre del proyecto: Bookeando
+
+Objetivos, descripción y funcionalidad del proyecto:
+
+	- Búsquedas concretas por título, autor, categoría literaria, etc.
+	- Sistema de reseñas/valoraciones.
+	- Creación de una librería propia del usuario con diferentes categorías, pudiendo eliminar libros, añadirlos, cambiarles la categoría, etc.
+	- Publicar en twitter recomendaciones y reseñas.
+
+URL del repositorio GitHub: https://github.com/FranHuzon/Proyecto_LM
+
+URL de la página web: https://www.bookeando.herokuapp.com
+
+¿Cuántas API web vas a usar en el proyecto?: En principio 2, OpenLibra y API Google Books.
+	
+	URL de la API(s) utilizada(s): 
+
+		- https://developers.google.com/books/?hl=es-419
+		- https://openlibra.com/es/page/public-api
+	
+	Lenguaje(s) de marcas que utiliza(n) la(s) API: JSON/JSONP
+	
+	¿Qué tipo de autentificación tiene(n) la(s) API utilizada(s)?: Oauth 2.0 para API Google Books.
+	
+	¿Qué métodos vas a usar en las llamada a la API?: GET,POST,DELETE,PUT
+
+¿Cuantas cosas hace la aplicación?, podemos pensar cuantos @route va a tener nuestro programa Flask: Como mínimo 4 o 5.
+
+¿Vas a hacer una página web válida y con hoja de estilo?: Si.
+
+Comenta cualquier cosa que crees que puedes hacerte conseguir un 10 en el proyecto:
+
+	Creo que es un proyecto original y útil para los amantes de la lectura, sobretodo el apartado de la librería propia de cada usuario y poder
+	publicar reseñas en twitter.
