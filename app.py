@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request
 import json
 app = Flask(__name__)   
 
@@ -19,11 +19,13 @@ key=os.environ['key']
 def inicio():
 	return render_template("index.html")
 
-@app.route('/buscar')
+@app.route('/buscar',methods=['GET','POST'])
 def buscar():
+	titulo=request.form.get("titulo")
+	autor=request.form.get("autor")
 	url="https://www.googleapis.com/books/v1/volumes"
 	payload={}
-	payload["q"]=input('Título: ')
+	payload["q"]=titulo
 	payload["+inauthor"]=input('Autor: ')
 	payload["key"]=key
 	r=requests.get(url,params=payload)
@@ -32,6 +34,7 @@ def buscar():
 		a=r.json()
 		resultado=a["items"][0]["volumeInfo"]["title"]
 		return resultado
+
 
 
 
