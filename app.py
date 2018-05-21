@@ -1,4 +1,5 @@
 from flask import Flask,render_template,request
+from requests_oauthlib import OAuth2Session
 import json
 app = Flask(__name__)   
 
@@ -24,7 +25,7 @@ def buscar():
 		for i in a["items"]:
 			lista.append(i["volumeInfo"]["title"])
 		return render_template('mostrar.html',l=lista)
-		
+
 ### Oauth2
 redirect_uri = 'https://oauth-jd.herokuapp.com/google_callback'
 scope = ['https://www.googleapis.com/auth/userinfo.profile']
@@ -91,7 +92,9 @@ def salir():
 
 
 
-app.run('0.0.0.0',8080,debug=True)
+if __name__ == '__main__':
+    port=os.environ["PORT"]
+	app.run('0.0.0.0',int(port), debug=True)
 
 
 
