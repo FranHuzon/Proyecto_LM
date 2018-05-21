@@ -53,14 +53,14 @@ def token_valido():
 
 @app.route('/perfil')
 def info_perfil():
-  if token_valido():
-	return redirect("/perfil_usuario")
-  else:
-	oauth2 = OAuth2Session(os.environ["client_id"], redirect_uri=redirect_uri,scope=scope)
-	authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
-	session.pop("token",None)
-	session["oauth_state"]=state
-	return redirect(authorization_url)  
+	if token_valido():
+		return redirect("/perfil_usuario")
+	else:
+		oauth2 = OAuth2Session(os.environ["client_id"], redirect_uri=redirect_uri,scope=scope)
+		authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
+		session.pop("token",None)
+		session["oauth_state"]=state
+		return redirect(authorization_url)  
 
 @app.route('/google_callback')
 def get_token():
@@ -84,10 +84,6 @@ def info_perfil_usuario():
 def salir():
 	session.pop("token",None)
 	return redirect("/perfil")
-
-
-
-
 
 if __name__ == '__main__':
 	port=os.environ["PORT"]
