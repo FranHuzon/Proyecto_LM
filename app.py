@@ -16,14 +16,12 @@ def buscar():
 	buscar=request.form.get("buscar")
 	url="https://www.googleapis.com/books/v1/volumes"
 	busqueda=buscar
-	payload={"q":busqueda,"fields"=items(selfLink%2CvolumeInfo(authors%2Ccategories%2CimageLinks%2FsmallThumbnail%2Ctitle))"key":key}
+	payload={"q":busqueda,"fields"=items(selfLink%2CvolumeInfo(authors%2Ccategories%2CimageLinks%2FsmallThumbnail%2Ctitle)),"key":key}
 	r=requests.get(url,params=payload)
 	
 	if r.status_code==200:
 		a=r.json()
-		lista=[]
 		return render_template('mostrar.html',l=a["items"])
-
 ### Oauth2
 redirect_uri = 'https://oauth-jd.herokuapp.com/google_callback'
 scope = ['https://www.googleapis.com/auth/userinfo.profile']
