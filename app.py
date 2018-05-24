@@ -16,7 +16,7 @@ def buscar():
 	buscar=request.form.get("buscar")
 	url="https://www.googleapis.com/books/v1/volumes"
 	busqueda=buscar
-	payload={"q":busqueda,"fields"=items(selfLink%2CvolumeInfo(authors%2Ccategories%2CimageLinks%2FsmallThumbnail%2Ctitle)),"key":key}
+	payload={"q":busqueda,"fields":items(selfLink%2CvolumeInfo(authors%2Ccategories%2CimageLinks%2FsmallThumbnail%2Ctitle)),"key":key}
 	r=requests.get(url,params=payload)
 	
 	if r.status_code==200:
