@@ -4,7 +4,7 @@ import json
 app = Flask(__name__)   
 
 import requests
-import os,json
+import os
 key=os.environ['key']
 
 @app.route('/')
@@ -25,8 +25,24 @@ def buscar():
 		lista=[]
 		for i in a["items"]:
 			lista.append(i)
-		print(lista)
 		return render_template('mostrar.html',l=lista)
+
+@app.route('/mi_coleccion')
+def coleccion():
+	url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/volumes"
+	campos='items(selfLink,volumeInfo(imageLinks/smallThumbnail,title))'
+	payload={'fields':campos,'key':key}
+	r=requests.get(url,params=payload)
+
+	if r.status_code==200:
+		a=r.json()
+		lista=[]
+		for i in a["items"]:
+			lista.append(i)
+		return render_template('mi_coleccion.html',l=lista)
+
+
+
 #### Oauth2
 redirect_uri = 'https://oauth-jd.herokuapp.com/google_callback'
 scope = ['https://www.googleapis.com/auth/userinfo.profile']
