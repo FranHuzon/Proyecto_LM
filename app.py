@@ -6,6 +6,7 @@ app = Flask(__name__)
 import requests
 import os
 key=os.environ['key']
+app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 @app.route('/')
 def inicio():
