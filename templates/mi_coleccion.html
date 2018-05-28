@@ -4,7 +4,6 @@
 {% for i in l %}
 <p>{{i["selfLink"]}}</p>
 <p>{{i["volumeInfo"]["title"]}}</p>
-portada={{i["volumeInfo"]["imageLinks[smallThumbnails"]}}
-<img> src=portada alt="Portada"</img>
+<img> src={{i["volumeInfo"]["imageLinks[smallThumbnails"]}} alt="Portada"</img>
 {%endfor%}
 {%endblock%}
