@@ -30,7 +30,7 @@ def buscar():
 
 #### Oauth2
 redirect_uri = 'https://bookeando.herokuapp.com/google_callback'
-scope = ['https://www.googleapis.com/auth/userinfo.profile']
+scope = ['https://www.googleapis.com/auth/books']
 token_url = "https://accounts.google.com/o/oauth2/token"
 
 @app.route('/google')
@@ -99,7 +99,7 @@ def coleccion():
 		else:
 			return "fallo"
 	else:
-		return redirect('/')
+		return redirect('/entrar')
 
 
 
