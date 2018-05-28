@@ -29,7 +29,7 @@ def buscar():
 		return render_template('mostrar.html',l=lista)
 
 #### Oauth2
-redirect_uri = 'https://oauth-jd.herokuapp.com/google_callback'
+redirect_uri = 'https://bookeando.herokuapp.com/google_callback'
 scope = ['https://www.googleapis.com/auth/userinfo.profile']
 token_url = "https://accounts.google.com/o/oauth2/token"
 
