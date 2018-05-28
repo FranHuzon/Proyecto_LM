@@ -82,13 +82,13 @@ def salir():
 def coleccion():
 	if token_valido():
 		token=json.loads(session["token"])
-		oauth2 = OAuth2Session(os.environ["client_id"], token=token)
-	
+		oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
+		print(token)
 		url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/volumes"
 		campos='items(selfLink,volumeInfo(imageLinks/smallThumbnail,title))'
 		payload={'fields':campos,'key':key}
 	
-		r=requests.get(url,params=payload)
+		r=oauth2.get(url,params=payload)
 
 		if r.status_code==200:
 			a=r.json()
