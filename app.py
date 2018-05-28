@@ -52,10 +52,10 @@ def token_valido():
 		token_ok = False
 	return token_ok
 
-@app.route('/perfil')
+@app.route('/entrar')
 def info_perfil():
 	if token_valido():
-		return redirect("/perfil_usuario")
+		return redirect("/mi_coleccion")
 	else:
 		oauth2 = OAuth2Session(os.environ["client_id"], redirect_uri=redirect_uri,scope=scope)
 		authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
