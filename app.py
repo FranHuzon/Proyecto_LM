@@ -27,22 +27,6 @@ def buscar():
 			lista.append(i)
 		return render_template('mostrar.html',l=lista)
 
-@app.route('/mi_coleccion')
-def coleccion():
-	url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/volumes"
-	campos='items(selfLink,volumeInfo(imageLinks/smallThumbnail,title))'
-	payload={'fields':campos,'key':key}
-	r=requests.get(url,params=payload)
-
-	if r.status_code==200:
-		a=r.json()
-		lista=[]
-		for i in a["items"]:
-			lista.append(i)
-		return render_template('mi_coleccion.html',l=lista)
-
-
-
 #### Oauth2
 redirect_uri = 'https://oauth-jd.herokuapp.com/google_callback'
 scope = ['https://www.googleapis.com/auth/userinfo.profile']
@@ -84,23 +68,37 @@ def get_token():
 	oauth2 = OAuth2Session(os.environ["client_id"], state=session["oauth_state"],redirect_uri=redirect_uri)
 	token = oauth2.fetch_token(token_url, client_secret=os.environ["client_secret"],authorization_response=request.url[:4]+"s"+request.url[4:])
 	session["token"]=json.dumps(token)
-	return redirect("/perfil_usuario")
+	return redirect("/mi_coleccion")
 
-@app.route('/perfil_usuario')
-def info_perfil_usuario():
-	if token_valido():
-		token=json.loads(session["token"])
-		oauth2 = OAuth2Session(os.environ["client_id"], token=token)
-		r = oauth2.get('https://www.googleapis.com/oauth2/v1/userinfo')
-		doc=json.loads(r.content)
-		return render_template("perfil.html", datos=doc)
-	else:
-		return redirect('/perfil')
+
 
 @app.route('/logout')
 def salir():
 	session.pop("token",None)
 	return redirect("/perfil")
+
+@app.route('/mi_coleccion')
+def coleccion():
+	if token_valido():
+		token=json.loads(session["token"])
+		oauth2 = OAuth2Session(os.environ["client_id"], token=token)
+	
+		url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/volumes"
+		campos='items(selfLink,volumeInfo(imageLinks/smallThumbnail,title))'
+		payload={'fields':campos,'key':key}
+	
+		r=requests.get(url,params=payload)
+
+		if r.status_code==200:
+			a=r.json()
+			lista=[]
+			for i in a["items"]:
+				lista.append(i)
+			return render_template('mi_coleccion.html',l=lista)
+	else:
+		return redirect('/')
+
+
 
 if __name__ == '__main__':
 	port=os.environ["PORT"]    
