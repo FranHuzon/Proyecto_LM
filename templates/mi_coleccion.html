@@ -1,0 +1,8 @@
+{%extends "base.html"%}
+{%block coleccion%}
+<h1>Mi Colección</h1>
+{% for i in l: %}
+<p>{{i["selfLink"]}}</p>
+<p>{{i["volumeInfo"]["title"]}}</p>
+<img>{{i["volumeInfo"]["imageLinks[smallThumbnails"]}}</img>
+{%endblock%}
