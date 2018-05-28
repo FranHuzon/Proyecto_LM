@@ -54,9 +54,9 @@ def token_valido():
 	return token_ok
 
 @app.route('/entrar')
-def info_perfil():
+def login():
 	if token_valido():
-		return redirect("/mi_coleccion")
+		return redirect("/")
 	else:
 		oauth2 = OAuth2Session(os.environ["client_id"], redirect_uri=redirect_uri,scope=scope)
 		authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
@@ -96,6 +96,8 @@ def coleccion():
 			for i in a["items"]:
 				lista.append(i)
 			return render_template('mi_coleccion.html',l=lista)
+		else:
+			return "fallo"
 	else:
 		return redirect('/')
 
