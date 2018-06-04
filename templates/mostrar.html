@@ -3,7 +3,7 @@
 {% for i in l %}
 
 {% if i['volumeInfo']['imageLinks'] %}
-<a href="/detalle/{{i['id']}}> 
+<a href="/detalle/{{i['id']}}"> 
 <img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" />
 </a> 
 {% else %} <img src="static/style/notfound.jpg" alt="Miniatura"/>
