@@ -43,6 +43,15 @@ def detalles(id_libro):
 			lista.append(i)
 		return render_template('detalles.html',l=lista)
 
+
+
+@app.route('/contact.html')
+def contacto():
+	return render_template("contact.html")
+
+
+
+
 #### Oauth2
 redirect_uri = 'https://bookeando.herokuapp.com/google_callback'
 scope = ['https://www.googleapis.com/auth/books']
