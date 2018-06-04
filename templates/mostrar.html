@@ -5,11 +5,10 @@
 <p>{{i["volumeInfo"]["title"]}}</p>
 {% for j in i["volumeInfo"]["authors"] %}<p>{{j}}</p>{%endfor%}
 
-{% if ({{i['volumeInfo']['imageLinks']['smallThumbnail']}}) {
-	// <img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura"/>}
-else { 
-	// <img src="static/style/notfound.jpg" alt="Miniatura"/>}
-%}
+{% if i['volumeInfo']['imageLinks']['smallThumbnail'] %}
+<img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura"/>}
+{% else %} <img src="static/style/notfound.jpg" alt="Miniatura"/>}
+{% endif %}
 
 {%endfor%}
 
