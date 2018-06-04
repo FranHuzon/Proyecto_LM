@@ -25,6 +25,8 @@ def buscar():
 	if r.status_code==200:
 		a=r.json()
 		lista=[]
+		id_libro=a["items"]["id"]
+		print(id_libro)
 		for i in a["items"]:
 			lista.append(i)
 		return render_template('mostrar.html',l=lista)
