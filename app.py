@@ -19,7 +19,7 @@ def buscar():
 	url="https://www.googleapis.com/books/v1/volumes"
 	busqueda=busca
 	campos='items(selfLink,volumeInfo(authors,imageLinks/smallThumbnail,title))'
-	payload={'q':busqueda,'fields':campos,'key':key}
+	payload={'q':busqueda,'maxResults':'40','fields':campos,'key':key}
 	r=requests.get(url, params=payload)
 	
 	if r.status_code==200:
