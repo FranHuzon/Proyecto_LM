@@ -2,14 +2,15 @@
 {%block mostrar%}
 {% for i in l %}
 <p>{{i["selfLink"]}}</p>
-<p>{{i["volumeInfo"]["title"]}}</p>
-{% for j in i["volumeInfo"]["authors"] %}<p>{{j}}</p>{%endfor%}
 
 {% if i['volumeInfo']['imageLinks'] %}
-<img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura"/>
+<a href="/detalle/id_libro"> 
+<img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" />
+</a> 
 {% else %} <img src="static/style/notfound.jpg" alt="Miniatura"/>
 {% endif %}
-
+<p>{{i["volumeInfo"]["title"]}}</p>
+{% for j in i["volumeInfo"]["authors"] %}<p>{{j}}</p>{%endfor%}
 {%endfor%}
 
 <input type="button" onclick=" location.href='https://bookeando.herokuapp.com/' " value="Volver" name="boton" />
