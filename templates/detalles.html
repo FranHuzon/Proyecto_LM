@@ -1,0 +1,32 @@
+{%extends "base.html"%}
+{%block detalles%}
+{% for i in l %}
+
+{% if i['volumeInfo']['imageLinks'] %}
+<img src="{{i['volumeInfo']['imageLinks']['small']}}" alt="Imagen" />
+ {% else %}
+ <img src="static/style/notfound.jpg" alt="Imagen"/>
+{% endif %}
+<p>{{i["volumeInfo"]["title"]}}</p>
+
+{% for j in i["volumeInfo"]["authors"] %}<p>{{j}}</p>{%endfor%}
+
+<p>{{i['volumeInfo']['description']}}</p>
+
+{% for j in i["volumeInfo"]["categories"] %}<p>{{j}}</p>{%endfor%}
+
+<p>{{i['volumeInfo']['averageRating']}}</p>
+
+<p>{{i['volumeInfo']['ratingsCount']}}</p>
+
+<p>{{i['volumeInfo']['previewLink']}}</p>
+
+<p>{{i['saleInfo']['listPrice']['amount']}}</p>
+
+<p>{{i['saleInfo']['listPrice']['currencyCode']}}</p>
+
+<p>{{i['saleInfo']['buyLink']}}</p>
+
+
+{%endfor%}
+{%endblock%}
