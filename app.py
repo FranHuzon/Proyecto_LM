@@ -25,8 +25,6 @@ def buscar():
 	if r.status_code==200:
 		a=r.json()
 		lista=[]
-		id_libro=a["items"]["id"]
-		print(id_libro)
 		for i in a["items"]:
 			lista.append(i)
 		return render_template('mostrar.html',l=lista)
@@ -36,6 +34,12 @@ def detalles(id_libro):
 	url="https://www.googleapis.com/books/v1/volumes/"+id_libro
 	r=requests.get(url)
 
+	if r.status_code==200:
+		a=r.json()
+		lista=[]
+		for i in a["items"]:
+			lista.append(i)
+		return render_template('detalles.html',l=lista)
 
 #### Oauth2
 redirect_uri = 'https://bookeando.herokuapp.com/google_callback'
