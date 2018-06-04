@@ -32,9 +32,9 @@ def buscar():
 		return render_template('mostrar.html',l=lista)
 
 @app.route('/detalles/<string:id_libro',methods=['GET', 'POST'])
-def detalles(id_libro=id_libro):
-	url="https://www.googleapis.com/books/v1/volumes/"
-
+def detalles(id_libro):
+	url="https://www.googleapis.com/books/v1/volumes/"+id_libro
+	r=requests.get(url)
 
 
 #### Oauth2
