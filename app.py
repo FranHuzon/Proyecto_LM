@@ -29,7 +29,7 @@ def buscar():
 			lista.append(i)
 		return render_template('mostrar.html',l=lista)
 
-@app.route('/detalles/<string:id_libro>',methods=['GET', 'POST'])
+@app.route('/detalles/<id_libro>',methods=['GET', 'POST'])
 def detalles(id_libro):
 	url="https://www.googleapis.com/books/v1/volumes/"+id_libro
 	campos='saleInfo(buyLink,country,isEbook,listPrice),volumeInfo(authors,averageRating,categories,description,imageLinks/small,previewLink,ratingsCount,subtitle,title)'
