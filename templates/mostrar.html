@@ -1,7 +1,7 @@
 {%extends "base.html"%}
 {%block mostrar%}
 {% for i in l %}
-
+{{id_libro=}}
 {% if i['volumeInfo']['imageLinks'] %}
 <a href="/detalle/{{i['id']}}"> 
 <img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" />

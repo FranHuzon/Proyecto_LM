@@ -29,9 +29,9 @@ def buscar():
 			lista.append(i)
 		return render_template('mostrar.html',l=lista)
 
-@app.route('/detalles/<string:id>',methods=['GET', 'POST'])
+@app.route('/detalles',methods=['GET', 'POST'])
 def detalles(id):
-	url="https://www.googleapis.com/books/v1/volumes/"+id_libro
+	url="https://www.googleapis.com/books/v1/volumes/"+id
 	campos='saleInfo(buyLink,country,isEbook,listPrice),volumeInfo(authors,averageRating,categories,description,imageLinks/small,previewLink,ratingsCount,subtitle,title)'
 	payload={'fields':campos}
 	r=requests.get(url,params=payload)
