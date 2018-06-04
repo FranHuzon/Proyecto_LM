@@ -18,7 +18,7 @@ def buscar():
 	busca=request.form.get("buscar")
 	url="https://www.googleapis.com/books/v1/volumes"
 	busqueda=busca
-	campos='items(selfLink,volumeInfo(authors,imageLinks/smallThumbnail,title))'
+	campos='items(id,volumeInfo(authors,imageLinks/smallThumbnail,title))'
 	payload={'q':busqueda,'maxResults':'40','fields':campos,'key':key}
 	r=requests.get(url, params=payload)
 	
@@ -28,6 +28,12 @@ def buscar():
 		for i in a["items"]:
 			lista.append(i)
 		return render_template('mostrar.html',l=lista)
+
+@app.route('/detalles/<string:id_libro',methods=['GET', 'POST'])
+def (id_libro=id_libro):
+	url="https://www.googleapis.com/books/v1/volumes/"
+
+
 
 #### Oauth2
 redirect_uri = 'https://bookeando.herokuapp.com/google_callback'
