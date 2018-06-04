@@ -32,7 +32,7 @@ def buscar():
 		return render_template('mostrar.html',l=lista)
 
 @app.route('/detalles/<string:id_libro',methods=['GET', 'POST'])
-def (id_libro=id_libro):
+def detalles(id_libro=id_libro):
 	url="https://www.googleapis.com/books/v1/volumes/"
 
 
@@ -110,8 +110,8 @@ def coleccion():
 	else:
 		return redirect('/entrar')
 
+app.run('0.0.0.0',8080,debug=True)
 
-
-if __name__ == '__main__':
-	port=os.environ["PORT"]    
-	app.run('0.0.0.0',int(port),debug=True)
+#if __name__ == '__main__':
+#	port=os.environ["PORT"]    
+#	app.run('0.0.0.0',int(port),debug=True)
