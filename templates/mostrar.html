@@ -3,7 +3,8 @@
 {% for i in l %}
 <p>{{i["selfLink"]}}</p>
 <p>{{i["volumeInfo"]["title"]}}</p>
-<p>{{i["volumeInfo"]["authors"]}}</p>
+{% for j in i["volumeInfo"]["authors"] %}<p>{{j}}</p>{%endfor%}
+
 <img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura"/>
 {%endfor%}
 
