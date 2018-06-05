@@ -39,7 +39,7 @@ def detalles(id_libro):
 	if r.status_code==200:
 		a=r.json()
 		lista=[]
-		for i in a["items"]:
+		for i in a:
 			lista.append(i)
 		return render_template('detalles.html',l=lista)
 
