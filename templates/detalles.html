@@ -16,17 +16,17 @@
 
 {% for j in i["categories"] %}<p>{{j}}</p>{%endfor%}
 
-<p>['averageRating']</p>
+<p>{{i['averageRating']}}</p>
 
-<p>['ratingsCount']</p>
+<p>{{i['ratingsCount']}}</p>
 
-<p>['previewLink']</p>
+<p>{{i['previewLink']}}</p>
 
-<p>['listPrice']['amount']</p>
+<p>{{i['listPrice']['amount']}}</p>
 
-<p>['listPrice']['currencyCode']</p>
+<p>{{i['listPrice']['currencyCode']}}</p>
 
-<p>['buyLink']</p>
+<p>{{i['buyLink']}}</p>
 
 
 {%endfor%}
