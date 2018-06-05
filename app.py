@@ -37,12 +37,8 @@ def detalles(id_libro):
 	r=requests.get(url,params=payload)
 
 	if r.status_code==200:
-		a=r.json()
-		lista=[]
-		for i in a:
-			lista.append(i)
-		
-		return render_template('detalles.html',l=lista)
+		datos=r.json()		
+		return render_template('detalles.html',datos=datos)
 
 
 

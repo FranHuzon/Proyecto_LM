@@ -1,32 +1,19 @@
 {%extends "base.html"%}
 {%block detalles%}
-{% for i in l %}
+<p>{{datos["volumeInfo"]["title"]}}</p>
 
-{% if i['imageLinks'] %}
-<img src="{{i['imageLinks']['small']}}" alt="Imagen" />
+{% if datos]["volumeInfo"]['imageLinks'] %}
+<img src="{{datos]['volumeInfo']['imageLinks']['small']}}" alt="Imagen" />
  {% else %}
  <img src="static/style/notfound.jpg" alt="Imagen"/>
 {% endif %}
-<p>{{i["title"]}}</p>
-
-{% for j in i["authors"] %}<p>{{j}}</p>{%endfor%}
-
-<p>{{i['description']}}</p>
-
-{% for j in i["categories"] %}<p>{{j}}</p>{%endfor%}
-
-<p>{{i['averageRating']}}</p>
-
-<p>{{i['ratingsCount']}}</p>
-
-<p>{{i['previewLink']}}</p>
-
-<p>{{i['amount']}}</p>
-
-<p>{{i['currencyCode']}}</p>
-
-<p>{{i['buyLink']}}</p>
 
 
-{%endfor%}
+{% for j in datos["volumeInfo"]["authors"] %}<p>{{j}}</p>{%endfor%}
+
+<p>{{datos["volumeInfo"]['description']}}</p>
+
+
+
+
 {%endblock%}
