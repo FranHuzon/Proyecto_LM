@@ -2,9 +2,7 @@
 {%block mostrar%}
 {% for i in l %}
 {% if i['volumeInfo']['imageLinks'] %}
-<a href="/detalle/{{i['id']}}"> 
-<img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" />
-</a> 
+<a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
 {% else %} <img src="static/style/notfound.jpg" alt="Miniatura"/>
 {% endif %}
 <p>{{i["volumeInfo"]["title"]}}</p>
