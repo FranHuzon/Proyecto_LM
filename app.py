@@ -40,7 +40,11 @@ def detalles(id_libro):
 		a=r.json()
 		lista=[]
 		for i in a:
-			lista.append(i)
+			lista.append(i['title'])
+			lista.append(i['description'])
+			lista.append(i['previewLink'])
+			lista.append(i['listPrice']['amount'])
+
 		return render_template('detalles.html',l=lista)
 
 

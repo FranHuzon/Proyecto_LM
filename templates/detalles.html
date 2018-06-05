@@ -2,31 +2,11 @@
 {%block detalles%}
 {% for i in l %}
 
-{% if i['imageLinks'] %}
-<img src="{{i['imageLinks']['small']}}" alt="Imagen" />
- {% else %}
- <img src="static/style/notfound.jpg" alt="Imagen"/>
-{% endif %}
+<p>{{i[0]}}</p>
+<p>{{i[1]}}</p>
+<p>{{i[2]}}</p>
+<p>{{i[3]}}</p>
 
-<p>{{i["title"]}}</p>
-
-{% for j in i["authors"] %}<p>{{j}}</p>{%endfor%}
-
-<p>{{i['description']}}</p>
-
-{% for j in i["categories"] %}<p>{{j}}</p>{%endfor%}
-
-<p>i['averageRating']</p>
-
-<p>{{i['ratingsCount']}}</p>
-
-<p>{{i['previewLink']}}</p>
-
-<p>{{i['amount']}}</p>
-
-<p>{{i['currencyCode']}}</p>
-
-<p>{{i['buyLink']}}</p>
 
 
 {%endfor%}
