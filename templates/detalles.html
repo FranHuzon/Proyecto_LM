@@ -13,7 +13,19 @@
 
 <p>{{datos["volumeInfo"]['description'][3:-4]}}</p>
 
+{% for j in datos["volumeInfo"]["categories"] %}<p>{{j}}</p>{%endfor%}
 
+<p>{{datos['volumeInfo']['averageRating']}}</p>
+
+<p>{{datos["volumeInfo"]['ratingsCount']}}</p>
+
+<p>{{datos["volumeInfo"]['previewLink']}}</p>
+
+<p>{{datos["saleInfo"]["listPrice"]['amount']}}</p>
+
+<p>{{datos["saleInfo"]["listPrice"]['currencyCode']}}</p>
+
+<p>{{datos["saleInfo"]['buyLink']}}</p>
 
 
 {%endblock%}

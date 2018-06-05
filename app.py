@@ -13,7 +13,7 @@ app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 def inicio():
 	return render_template("index.html")
 
-@app.route('/buscar',methods=['GET', 'POST'])
+@app.route('/buscar' methods=['GET', 'POST'])
 def buscar():
 	busca=request.form.get("buscar")
 	url="https://www.googleapis.com/books/v1/volumes"
