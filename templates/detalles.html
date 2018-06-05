@@ -1,5 +1,13 @@
 {%extends "base.html"%}
 {%block detalles%}
+
+
+<ul>
+	<li><a href="{{datos['volumeInfo']['previewLink']}}">Muestra del libro</a></li>
+	<li><a href="{{datos['saleInfo']['buyLink']}}">Enlace de compra</a></li>
+	<li><a href="http://www.fantifica.com/">Comunidad de amantes de la lectura y  el cine</a></li>
+</ul>
+
 <p>{{datos["volumeInfo"]["title"]}}</p>
 
 {% if datos["volumeInfo"]['imageLinks'] %}
@@ -19,13 +27,9 @@
 
 <p>{{datos["volumeInfo"]['ratingsCount']}}</p>
 
-<p>{{datos["volumeInfo"]['previewLink']}}</p>
-
 <p>{{datos["saleInfo"]["listPrice"]['amount']}}</p>
 
 <p>{{datos["saleInfo"]["listPrice"]['currencyCode']}}</p>
-
-<p>{{datos["saleInfo"]['buyLink']}}</p>
 
 
 {%endblock%}
