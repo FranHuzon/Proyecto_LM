@@ -33,18 +33,15 @@ def buscar():
 def detalles(id_libro):
 	url="https://www.googleapis.com/books/v1/volumes/"+id_libro
 	campos='saleInfo(buyLink,country,isEbook,listPrice),volumeInfo(authors,averageRating,categories,description,imageLinks/small,previewLink,ratingsCount,subtitle,title)'
-	payload={'fields':campos}
+	payload={'fields':campos,'key':key}
 	r=requests.get(url,params=payload)
 
 	if r.status_code==200:
 		a=r.json()
 		lista=[]
-		for i in a['volumeInfo']:
-			lista.append(i['title'])
-			lista.append(i['description'])
-			lista.append(i['previewLink'])
-			lista.append(i['listPrice']['amount'])
-
+		for i in a:
+			lista.append(i)
+		
 		return render_template('detalles.html',l=lista)
 
 
