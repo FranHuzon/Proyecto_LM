@@ -13,7 +13,7 @@
 
 <p>{{datos["volumeInfo"]['description'][3:-4]}}</p>
 
-{% for j in datos["volumeInfo"]["categories"] %}<p>{{j}}</p>{%endfor%}
+{% for j in datos["volumeInfo"]["categories"] %}<p>{{j[0]}}</p>{%endfor%}
 
 <p>{{datos['volumeInfo']['averageRating']}}</p>
 
