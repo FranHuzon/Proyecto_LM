@@ -39,7 +39,7 @@ def detalles(id_libro):
 	if r.status_code==200:
 		a=r.json()
 		lista=[]
-		for i in a:
+		for i in a['volumeInfo']:
 			lista.append(i['title'])
 			lista.append(i['description'])
 			lista.append(i['previewLink'])
