@@ -1,6 +1,6 @@
 {%extends "base.html"%}
 {%block detalles%}
-{% for i in l %}
+{% for i in l['volumeInfo'] %}
 
 {% if i['imageLinks'] %}
 <img src="{{['imageLinks']['small']}}" alt="Imagen" />
@@ -22,12 +22,15 @@
 
 <p>{{i['previewLink']}}</p>
 
-<p>{{i['listPrice']['amount']}}</p>
+{%endfor%}
 
-<p>{{i['listPrice']['currencyCode']}}</p>
+{% for i in l['saleInfo'] %}
+
+<p>{{i['amount']}}</p>
+
+<p>{{i['currencyCode']}}</p>
 
 <p>{{i['buyLink']}}</p>
-
 
 {%endfor%}
 {%endblock%}
