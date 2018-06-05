@@ -7,6 +7,7 @@
  {% else %}
  <img src="static/style/notfound.jpg" alt="Imagen"/>
 {% endif %}
+
 <p>{{i["title"]}}</p>
 
 {% for j in i["authors"] %}<p>{{j}}</p>{%endfor%}
@@ -21,9 +22,9 @@
 
 <p>{{i['previewLink']}}</p>
 
-<p>{{i['listPrice']['amount']}}</p>
+<p>{{i['amount']}}</p>
 
-<p>{{i['listPrice']['currencyCode']}}</p>
+<p>{{i['currencyCode']}}</p>
 
 <p>{{i['buyLink']}}</p>
 
