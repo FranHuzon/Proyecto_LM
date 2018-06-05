@@ -9,11 +9,11 @@
 {% endif %}
 <p>{{i["title"]}}</p>
 
-{% for j in i["volumeInfo"]["authors"] %}<p>{{j}}</p>{%endfor%}
+{% for j in i["authors"] %}<p>{{j}}</p>{%endfor%}
 
 <p>{{i['description']}}</p>
 
-{% for j in i["volumeInfo"]["categories"] %}<p>{{j}}</p>{%endfor%}
+{% for j in i["categories"] %}<p>{{j}}</p>{%endfor%}
 
 <p>{{i['averageRating']}}</p>
 
@@ -21,11 +21,11 @@
 
 <p>{{i['previewLink']}}</p>
 
-<p>{{i['saleInfo']['listPrice']['amount']}}</p>
+<p>{{i['listPrice']['amount']}}</p>
 
-<p>{{i['saleInfo']['listPrice']['currencyCode']}}</p>
+<p>{{i['listPrice']['currencyCode']}}</p>
 
-<p>{{i['saleInfo']['buyLink']}}</p>
+<p>{{i['buyLink']}}</p>
 
 
 {%endfor%}
