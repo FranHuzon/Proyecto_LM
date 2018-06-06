@@ -5,8 +5,9 @@
 <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
 {% else %} <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="static/style/notfound.jpg" alt="Miniatura"/></a>
 {% endif %}
-<p>{{i["volumeInfo"]["title"]}}</p>
-{% for j in i["volumeInfo"]["authors"] %}<p>{{j}}</p>{%endfor%}
+<div>{{i["volumeInfo"]["title"]}}</div>
+{% for j in i["volumeInfo"]["authors"] %}<div>{{j}}</div>{%endfor%}
+
 {%endfor%}
 
 <input type="button" onclick=" location.href='https://bookeando.herokuapp.com/' " value="Volver" name="boton" />
