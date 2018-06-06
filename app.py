@@ -47,7 +47,27 @@ def contacto():
 	return render_template("contact.html")
 
 
+@app.route('/mi_coleccion')
+def coleccion():
+	if token_valido():
+		token=json.loads(session["token"])
+		oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
+		url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/volumes"
+		campos='items(id,volumeInfo(imageLinks/smallThumbnail,title))'
+		payload={'fields':campos,'key':key}
+	
+		r=oauth2.get(url,params=payload)
 
+		if r.status_code==200:
+			a=r.json()
+			lista=[]
+			for i in a["items"]:
+				lista.append(i)
+			return render_template('mi_coleccion.html',l=lista)
+		else:
+			return "fallo"
+	else:
+		return redirect('/entrar')
 
 #### Oauth2
 redirect_uri = 'https://bookeando.herokuapp.com/google_callback'
@@ -99,28 +119,7 @@ def salir():
 	session.pop("token",None)
 	return redirect("/perfil")
 
-@app.route('/mi_coleccion')
-def coleccion():
-	if token_valido():
-		token=json.loads(session["token"])
-		oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
-		print(token)
-		url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/volumes"
-		campos='items(selfLink,volumeInfo(imageLinks/smallThumbnail,title))'
-		payload={'fields':campos,'key':key}
-	
-		r=oauth2.get(url,params=payload)
 
-		if r.status_code==200:
-			a=r.json()
-			lista=[]
-			for i in a["items"]:
-				lista.append(i)
-			return render_template('mi_coleccion.html',l=lista)
-		else:
-			return "fallo"
-	else:
-		return redirect('/entrar')
 
 if __name__ == '__main__':
 	port=os.environ["PORT"]    

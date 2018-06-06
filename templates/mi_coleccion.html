@@ -2,10 +2,13 @@
 {%block coleccion%}
 <h1>Mi Colección</h1>
 {% for i in l %}
-<p>
-  <p>{{i["selfLink"]}}</p>
-  <p>{{i["volumeInfo"]["title"]}}</p>
-  <img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Portada"/>
-</p>
+<ul>
+  <li>{{i["volumeInfo"]["title"]}}</li>
+  {% if i['volumeInfo']['imageLinks'] %} 
+  <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
+  {% else %} 
+  <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="static/style/notfound.jpg" alt="Miniatura"/></a>
+  {% endif %}
+</ul>
 {%endfor%}
 {%endblock%}
