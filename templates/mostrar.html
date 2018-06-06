@@ -5,12 +5,15 @@
 <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
 {% else %} <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="static/style/notfound.jpg" alt="Miniatura"/></a>
 {% endif %}
-<div>{{i["volumeInfo"]["title"]}}</div>
+<div>
+  <div>{{i["volumeInfo"]["title"]}}</div>
+  <div><input type="button" onclick=" location.href='{{url_for('añadir',id_libro=i['id'])}}' " value="Añadir" name="boton" />
+</div>
+
 {% for j in i["volumeInfo"]["authors"] %}<div>{{j}}</div>{%endfor%}
 
-<input type="button" onclick=" location.href='{{url_for('añadir',id_libro=i['id'])}}' " value="Añadir" name="boton" />
 
 {%endfor%}
 
 <input type="button" onclick=" location.href='https://bookeando.herokuapp.com/' " value="Volver" name="boton" />
-{%endblock%}
+{%endblock%}<div>
