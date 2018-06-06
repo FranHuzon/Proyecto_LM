@@ -83,7 +83,7 @@ def añadir(id_libro):
 		if r.status_code==200:
 			return "Libro añadido con éxito a su colección"
 		else:
-			return "fallo"
+			return "Fallo"
 	else:
 		return redirect('/entrar')
 
