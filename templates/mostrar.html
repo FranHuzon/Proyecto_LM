@@ -3,7 +3,7 @@
 {% for i in l %}
 {% if i['volumeInfo']['imageLinks'] %}
 <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
-{% else %} <img src="static/style/notfound.jpg" alt="Miniatura"/>
+{% else %} <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="static/style/notfound.jpg" alt="Miniatura"/></a>
 {% endif %}
 <p>{{i["volumeInfo"]["title"]}}</p>
 {% for j in i["volumeInfo"]["authors"] %}<p>{{j}}</p>{%endfor%}
