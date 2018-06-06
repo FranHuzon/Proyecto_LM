@@ -8,6 +8,8 @@
 <div>{{i["volumeInfo"]["title"]}}</div>
 {% for j in i["volumeInfo"]["authors"] %}<div>{{j}}</div>{%endfor%}
 
+<input type="button" onclick=" location.href='{{url_for(\'añadir\',id_libro=i[\'id\'])}}' " value="Añadir" name="boton" />
+
 {%endfor%}
 
 <input type="button" onclick=" location.href='https://bookeando.herokuapp.com/' " value="Volver" name="boton" />
