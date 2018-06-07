@@ -5,7 +5,7 @@
 <div>
 	<div>
 		{% if datos["volumeInfo"]["title"] %}
-		<h1><strong>Título:</strong>{{datos["volumeInfo"]["title"]}}</h1>
+		<h1><strong>Título: </strong>{{datos["volumeInfo"]["title"]}}</h1>
 		{% else %}
 		<h1>Sin título</h1>
 		{% endif %}
@@ -35,7 +35,7 @@
 		{% endif %}
 	</div>
 	
-	<div><strong>Autores:</strong></div>
+	<div><strong>Autores: </strong></div>
 
 	<div>
 		{% if datos['volumeInfo']['authors'] %}
@@ -45,7 +45,7 @@
 		{% endif %}
 	</div><br>
 
-	<div><strong>Información:</strong></div>
+	<div><strong>Información: </strong></div>
 	
 	<div>
 		{% if datos['volumeInfo']['description'] %}
@@ -55,7 +55,7 @@
 		{% endif %}
 	</div>
 
-	<div><strong>Categoría:</strong></div>
+	<div><strong>Categoría: </strong></div>
 	
 	<div>
 		{% if datos["volumeInfo"]["categories"] %}
@@ -65,10 +65,10 @@
 		{% endif %}
 	
 	
-		<div><i>Nota Media:</i>{{datos['volumeInfo']['averageRating']}}</div>
+		<div><i>Nota Media: </i>{{datos['volumeInfo']['averageRating']}}</div>
 		<div><i>Votos:</i>{{datos["volumeInfo"]['ratingsCount']}}</div>
 		
-		<div><strong>Precio:</strong></div>
+		<div><strong>Precio: </strong></div>
 		<div>
 			{% if datos["saleInfo"]["listPrice"] %}
 			<div>{{datos["saleInfo"]["listPrice"]['amount']}}</div>
