@@ -3,17 +3,17 @@
 
 
 <div>
+
+	{% for i in l %}
+	{% if i['volumeInfo']['imageLinks'] %}
 	<div>
-		{% for i in l %}
-		{% if i['volumeInfo']['imageLinks'] %}
-		<div>
-			<strong>Título: </strong>{{i["volumeInfo"]["title"]}}<a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir</a><br>
-		</div>
-		<div>
-			<a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
-			{% else %} <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="static/style/notfound.jpg" alt="Miniatura"/></a>
-			{% endif %}
-		</div>
+		<strong>Título: </strong>{{i["volumeInfo"]["title"]}}<a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir</a><br>
+	</div>
+	<div>
+		<a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
+		{% else %} 
+		<a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="static/style/notfound.jpg" alt="Miniatura"/></a>
+		{% endif %}
 	</div>
 	
 	{% for j in i["volumeInfo"]["authors"] %}<div>{{j}}</div><br>{%endfor%}
