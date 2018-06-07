@@ -2,16 +2,43 @@ from flask import Flask,render_template,request,session,redirect
 from requests_oauthlib import OAuth2Session
 import json
 from oauthlib.oauth2 import TokenExpiredError
-app = Flask(__name__)   
-
 import requests
 import os
+
+app = Flask(__name__)  
 key=os.environ['key']
 app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 @app.route('/')
 def inicio():
 	return render_template("index.html")
+
+
+@app.route('/sugerencias')
+def sugerencias():
+	
+	if token_valido():
+		token=json.loads(session["token"])
+		oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
+		url="https://www.googleapis.com/books/v1/volumes/recommended"
+		campos='items(id,volumeInfo(imageLinks/smallThumbnail,title))'
+		payload={'fields':campos,'key':key}
+	
+		r=oauth2.get(url,params=payload)
+
+		if r.status_code==200:
+			a=r.json()
+			lista=[]
+			for i in a["items"]:
+				lista.append(i)
+			return render_template('sugerencias.html',l=lista)
+		else:
+			return "fallo"
+	else:
+		return redirect('/entrar')
+
+
+
 
 @app.route('/buscar', methods=['GET', 'POST'])
 def buscar():
@@ -98,7 +125,7 @@ def eliminar(id_libro):
 		r=oauth2.post(url,params=payload)
 
 		if r.status_code==204:
-			return "Libro eliminado con éxito a su colección"
+			return "Libro eliminado con éxito de su colección"
 		else:
 			return "Fallo"
 	else:
