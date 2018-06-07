@@ -6,8 +6,8 @@
 {% else %} <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="static/style/notfound.jpg" alt="Miniatura"/></a>
 {% endif %}
 <div>
-  <div>{{i["volumeInfo"]["title"]}}</div>
-  <div><a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">Añadir</a></div>
+  <div>{{i["volumeInfo"]["title"]}}
+  <a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir</a></div>
 </div>
 
 {% for j in i["volumeInfo"]["authors"] %}<div>{{j}}</div>{%endfor%}
