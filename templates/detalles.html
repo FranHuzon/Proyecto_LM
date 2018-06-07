@@ -22,14 +22,14 @@
 	
 	<ul>
 		{% if datos["volumeInfo"]['previewLink'] %}
-		<li href="{{datos['volumeInfo']['previewLink']}}">Muestra del libro</li>
+		<a href=""></a> href="{{datos['volumeInfo']['previewLink']}}">Muestra del libro</a>
 		{% else %}
-		<li>No tiene enlace de muestra</li>
+		<a>No tiene enlace de muestra</a>
 		{% endif %}
 		{% if datos['saleInfo']['buyLink'] %}
-		<li href="{{datos['saleInfo']['buyLink']}}">Enlace de compra</li>
+		<a href="{{datos['saleInfo']['buyLink']}}">Enlace de compra</a>
 		{% else %}
-		<li>No tiene enlace de compra</li>
+		<a>No tiene enlace de compra</a>
 		{% endif %}
 	</ul>
 	
@@ -49,9 +49,9 @@
 		<p>No tiene descripción añadida</p>
 		{% endif %}
 	</div>
-	
+
 	<div>
-		<h1><strong>Categoría:</strong></h1>
+		<div><strong>Categoría:</strong></div>
 		{% if datos["volumeInfo"]["categories"] %}
 		<li>{{datos["volumeInfo"]["categories"][0]}}</li>
 		{% else %}
@@ -62,7 +62,7 @@
 		<li><i>Nota Media:</i>{{datos['volumeInfo']['averageRating']}}</li>
 		<li><i>Votos:</i>{{datos["volumeInfo"]['ratingsCount']}}</li>
 		
-		<h1><strong>Precio:</strong></h1>
+		<div><strong>Precio:</strong></div>
 		<div>
 			{% if datos["saleInfo"]["listPrice"] %}
 			<li>{{datos["saleInfo"]["listPrice"]['amount']}}</li>
