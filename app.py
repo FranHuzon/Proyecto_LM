@@ -32,7 +32,7 @@ def buscar():
 @app.route('/detalle/<id_libro>',methods=['GET', 'POST'])
 def detalles(id_libro):
 	url="https://www.googleapis.com/books/v1/volumes/"+id_libro
-	campos='saleInfo(buyLink,country,isEbook,listPrice),volumeInfo(authors,averageRating,categories,description,imageLinks/small,previewLink,ratingsCount,subtitle,title)'
+	campos='saleInfo(buyLink,country,isEbook,listPrice),volumeInfo(authors,averageRating,categories,description,imageLinks/small,imageLinks/smallThumbnail,previewLink,ratingsCount,subtitle,title)'
 	payload={'fields':campos,'key':key}
 	r=requests.get(url,params=payload)
 

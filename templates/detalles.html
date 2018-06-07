@@ -13,8 +13,10 @@
 	
 	
 	<div>
-		{% if datos["volumeInfo"]['imageLinks'] %}
+		{% if datos["volumeInfo"]['imageLinks'] and datos['volumeInfo']['imageLinks']['small'] %}
 		<img src="{{datos['volumeInfo']['imageLinks']['small']}}" alt="Imagen" />
+		{% elif datos["volumeInfo"]['imageLinks'] and datos['volumeInfo']['imageLinks']['smallThumbnail'] %}
+		<img src="{{datos['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Imagen" />
 		{% else %}
 		 <img src="static/style/notfound.jpg" alt="Imagen"/>
 		{% endif %}
@@ -24,12 +26,12 @@
 		{% if datos["volumeInfo"]['previewLink'] %}
 		<a href="{{datos['volumeInfo']['previewLink']}}">Muestra del libro</a>
 		{% else %}
-		<a>No tiene enlace de muestra</a>
+		<div>No tiene enlace de muestra</div>
 		{% endif %}
 		{% if datos['saleInfo']['buyLink'] %}
 		<a href="{{datos['saleInfo']['buyLink']}}">Enlace de compra</a>
 		{% else %}
-		<a>No tiene enlace de compra</a>
+		<div>No tiene enlace de compra</div>
 		{% endif %}
 	</ul>
 	
@@ -41,15 +43,15 @@
 		{% else %}
 		<div>No hay autor/a especificado/a</div>
 		{% endif %}
-	</div>
+	</div><br>
 
-	<div><strong>Sinopsis:</strong></div>
+	<div><strong>Información:</strong></div>
 	
 	<div>
 		{% if datos['volumeInfo']['description'] %}
 		{% autoescape false %}<p>{{datos['volumeInfo']['description']}}</p>{% endautoescape %}
 		{% else %}
-		<p>No tiene una sinopsis añadida</p>
+		<div>No contiene información</div>
 		{% endif %}
 	</div>
 
