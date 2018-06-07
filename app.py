@@ -88,7 +88,7 @@ def añadir(id_libro):
 		return redirect('/entrar')
 
 @app.route('/eliminar/<id_libro>')
-def añadir(id_libro):
+def eliminar(id_libro):
 	if token_valido():
 		token=json.loads(session["token"])
 		oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
@@ -103,10 +103,6 @@ def añadir(id_libro):
 			return "Fallo"
 	else:
 		return redirect('/entrar')
-
-
-
-
 
 
 #### Oauth2
