@@ -76,7 +76,7 @@ def añadir(id_libro):
 		token=json.loads(session["token"])
 		oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
 		url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/addVolume"
-		payload={'volumeId':id_libro'key':key}
+		payload={'volumeId':id_libro,'key':key}
 	
 		r=oauth2.get(url,params=payload)
 
