@@ -78,6 +78,24 @@ def añadir(id_libro):
 		url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/addVolume"
 		payload={'volumeId':id_libro,'key':key}
 	
+		r=oauth2.post(url,params=payload)
+
+		if r.status_code==204:
+			return "Libro añadido con éxito a su colección"
+		else:
+			return "Fallo"
+	else:
+		return redirect('/entrar')
+
+
+@app.route('/eliminar/<id_libro>')
+def añadir(id_libro):
+	if token_valido():
+		token=json.loads(session["token"])
+		oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
+		url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/removeVolume"
+		payload={'volumeId':id_libro,'key':key}
+	
 		r=oauth2.get(url,params=payload)
 
 		if r.status_code==200:
@@ -86,6 +104,13 @@ def añadir(id_libro):
 			return "Fallo"
 	else:
 		return redirect('/entrar')
+
+
+
+
+
+
+
 
 
 
