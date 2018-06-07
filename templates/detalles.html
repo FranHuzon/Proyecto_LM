@@ -22,7 +22,7 @@
 		{% endif %}
 	</div>
 	
-	<ul>
+	<div>
 		{% if datos["volumeInfo"]['previewLink'] %}
 		<a href="{{datos['volumeInfo']['previewLink']}}">Muestra del libro</a>
 		{% else %}
@@ -31,9 +31,9 @@
 		{% if datos['saleInfo']['buyLink'] %}
 		<a href="{{datos['saleInfo']['buyLink']}}">Enlace de compra</a>
 		{% else %}
-		<div>No tiene enlace de compra</div>
+		<div><s>Enlace de compra</s></div>
 		{% endif %}
-	</ul>
+	</div>
 	
 	<div><strong>Autores:</strong></div>
 
@@ -84,7 +84,6 @@
 			
 		</div>
 	</div>
-	<div><a href="{{url_for('buscar')}}" class="button alt">Volver</a></div>
 </div>
 
 {%endblock%}
