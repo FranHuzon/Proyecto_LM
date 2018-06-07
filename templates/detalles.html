@@ -18,7 +18,7 @@
 
 {% for j in datos["volumeInfo"]["authors"] %}<p>{{j}}</p>{%endfor%}
 
-<p>{{datos["volumeInfo"]['description'][3:-4]}}</p>
+<p>{{datos["volumeInfo"]['description']|e}}</p>
 
 <p>{{datos["volumeInfo"]["categories"][0]}}</p>
 
