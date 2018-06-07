@@ -21,7 +21,7 @@ def sugerencias():
 		token=json.loads(session["token"])
 		oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
 		url="https://www.googleapis.com/books/v1/volumes/recommended"
-		campos='items(id,volumeInfo(imageLinks/smallThumbnail,title))'
+		campos='items(id,volumeInfo(imageLinks/thumbnail,title))'
 		payload={'fields':campos,'key':key}
 	
 		r=oauth2.get(url,params=payload)
