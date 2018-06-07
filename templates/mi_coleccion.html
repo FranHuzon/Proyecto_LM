@@ -9,22 +9,23 @@
 
 	<div>
 		{% if i['id'] not in l %}
-		<a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir a Mi Colección</a> <a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
-		{% else %} 
 		<div>Libro ya añadido</div>
+		{% else %} 
+		<a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir a Mi Colección</a>
 		{% endif %}
 
 		{% if i['id'] not in l %}
-		<div>Libro aún no añadido</div>
-		{% else %}
 		<a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
+		{% else %}
+		<div>Libro aún no añadido</div>
 		{% endif %}
+	</div>
 
 	<div>  
 		{% if i['volumeInfo']['imageLinks'] %} 
-		<a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
+		<a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a><br>
 		{% else %} 
-		<a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="static/style/notfound.jpg" alt="Miniatura"/></a>
+		<a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="static/style/notfound.jpg" alt="Miniatura"/></a><br>
 		{% endif %}
 	</div>
 </div>
