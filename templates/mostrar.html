@@ -4,9 +4,8 @@
 {% if i['volumeInfo']['imageLinks'] %}
 
 <div>
-  <div><h2>{{i["volumeInfo"]["title"]}}</h2>
-  <a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir</a></div>
-</div>
+	<h2>{{i["volumeInfo"]["title"]}}</h2><a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir</a>
+</div><br>
 
 <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
 {% else %} <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="static/style/notfound.jpg" alt="Miniatura"/></a>
