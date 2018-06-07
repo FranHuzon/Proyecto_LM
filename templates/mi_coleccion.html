@@ -4,7 +4,7 @@
 {% for i in l %}
 <div>
 	<div>
-		<strong>Título:</strong>{{i['volumeInfo']['title']}}<a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
+		<strong>Título:</strong>"{{i['volumeInfo']['title']}}"<a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
 	</div>
 	<div>  
 		{% if i['volumeInfo']['imageLinks'] %} 
