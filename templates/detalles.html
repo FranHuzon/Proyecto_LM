@@ -7,7 +7,7 @@
 	<a href="{{datos['saleInfo']['buyLink']}}">Enlace de compra</a>
 </ul>
 
-<p>{{datos["volumeInfo"]["title"]}}</p>
+<p><strong>Título:</strong>{{datos["volumeInfo"]["title"]}}</p>
 
 {% if datos["volumeInfo"]['imageLinks'] %}
 <img src="{{datos['volumeInfo']['imageLinks']['small']}}" alt="Imagen" />
@@ -15,9 +15,11 @@
  <img src="static/style/notfound.jpg" alt="Imagen"/>
 {% endif %}
 
-
-{% for j in datos["volumeInfo"]["authors"] %}<p>{{j}}</p>{%endfor%}
-
+<ul>
+	<li><strong>Autores:</strong></li>
+	{% for j in datos["volumeInfo"]["authors"] %}<li>{{j}}</li>
+	{%endfor%}
+</ul>
 
 {% autoescape false %} 
    <p>{{datos["volumeInfo"]['description']}}</p>
@@ -25,15 +27,15 @@
 
 
 
-<p>{{datos["volumeInfo"]["categories"][0]}}</p>
+<p><strong>Categoría:</strong>{{datos["volumeInfo"]["categories"][0]}}</p>
 
-<p>{{datos['volumeInfo']['averageRating']}}</p>
+<p><strong>Nota Media:</strong>{{datos['volumeInfo']['averageRating']}}</p>
 
-<p>{{datos["volumeInfo"]['ratingsCount']}}</p>
+<p><i>Votos:</i>{{datos["volumeInfo"]['ratingsCount']}}</p>
 
-<p>{{datos["saleInfo"]["listPrice"]['amount']}}</p>
+<p><strong>Precio:</strong>{{datos["saleInfo"]["listPrice"]['amount']}}</p>
 
-<p>{{datos["saleInfo"]["listPrice"]['currencyCode']}}</p>
+<p><strong>{{datos["saleInfo"]["listPrice"]['currencyCode']}}</strong></p>
 
 
 {%endblock%}

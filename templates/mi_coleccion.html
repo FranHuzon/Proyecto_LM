@@ -3,7 +3,10 @@
 <h1>Mi Colección</h1>
 {% for i in l %}
 <ul>
-  <li>{{i["volumeInfo"]["title"]}}</li>
+ <div>
+  <div><strong>Título:</strong>{{i["volumeInfo"]["title"]}}</div>
+  <div><a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">Eliminar</a></div>
+</div>
   {% if i['volumeInfo']['imageLinks'] %} 
   <a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
   {% else %} 
