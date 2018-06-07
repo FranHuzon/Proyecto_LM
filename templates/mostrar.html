@@ -7,14 +7,14 @@
 	{% for i in l %}
 	{% if i['volumeInfo']['imageLinks'] %}
 	<div>
-		<strong>Título: </strong>{{i["volumeInfo"]["title"]}}
+		<strong>Título: </strong>{{i["volumeInfo"]["title"]}} 
 	</div><br>
 	
 	<div>
 		{% if i['id'] not in l %}
-		<div>Libro ya añadido</div>
-		{% else %} 
 		<a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir a Mi Colección</a>
+		{% else %} 
+		<div>Libro ya añadido</div>
 		{% endif %}
 
 		{% if i['id'] not in l %}
