@@ -5,7 +5,7 @@
 <div>
 
 	{% for i in l %}
-	{% if i['volumeInfo']['imageLinks'] %}
+	
 	<div>
 		<strong>Título: </strong>{{i["volumeInfo"]["title"]}} 
 	</div><br>
@@ -26,6 +26,7 @@
 
 
 	<div>
+		{% if i['volumeInfo']['imageLinks'] %}
 		<a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
 		{% else %} 
 		<a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="static/style/notfound.jpg" alt="Miniatura"/></a>
