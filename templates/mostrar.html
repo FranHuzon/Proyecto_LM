@@ -7,7 +7,7 @@
 	{% for i in l %}
 	{% if i['volumeInfo']['imageLinks'] %}
 	<div>
-		<strong>Título: </strong>{{i["volumeInfo"]["title"]}} <a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir</a>
+		<strong>Título: </strong>{{i["volumeInfo"]["title"]}} <a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir a Mi Colección</a>
 	</div><br>
 	<div>
 		<a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
@@ -16,9 +16,13 @@
 		{% endif %}
 	</div><br>
 	
-	{% for j in i["volumeInfo"]["authors"] %}<div>{{j}}</div><br>{%endfor%}
+	<div><strong>Autores: </strong></div>
+
+	<ul>
+		{% for j in i["volumeInfo"]["authors"] %}<div>{{j}}</div><br>{%endfor%}
 	
-	{%endfor%}
+		{%endfor%}
+	</ul>
 </div>
 
 <input type="button" onclick=" location.href='https://bookeando.herokuapp.com/' " value="Volver" name="boton" />
