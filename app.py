@@ -180,7 +180,7 @@ def get_token():
 @app.route('/logout')
 def salir():
 	session.pop("token",None)
-	return redirect("/perfil")
+	return redirect("/")
 
 
 
