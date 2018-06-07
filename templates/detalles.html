@@ -5,11 +5,11 @@
 <div>
 	<div>
 		{% if datos["volumeInfo"]["title"] %}
-		<li><strong>Título:</strong>{{datos["volumeInfo"]["title"]}}</li>
+		<h1><strong>Título:</strong>{{datos["volumeInfo"]["title"]}}</h1>
 		{% else %}
-		<li>Sin título</li>
+		<h1>Sin título</h1>
 		{% endif %}
-	</div>
+	</div><br>
 	
 	
 	<div>
@@ -33,47 +33,51 @@
 		{% endif %}
 	</ul>
 	
+	<div><strong>Autores:</strong></div>
+
 	<div>
-		<li><strong>Autores:</strong></li>
 		{% if datos['volumeInfo']['authors'] %}
-		{% for j in datos['volumeInfo']['authors'] %}<li>{{j}}</li>{%endfor%}
+		{% for j in datos['volumeInfo']['authors'] %}<div>{{j}}</div>{%endfor%}
 		{% else %}
-		<li>No hay autor/a especificado/a</li>
+		<div>No hay autor/a especificado/a</div>
 		{% endif %}
 	</div>
+
+	<div><strong>Sinopsis:</strong></div>
 	
 	<div>
 		{% if datos['volumeInfo']['description'] %}
 		{% autoescape false %}<p>{{datos['volumeInfo']['description']}}</p>{% endautoescape %}
 		{% else %}
-		<p>No tiene descripción añadida</p>
+		<p>No tiene una sinopsis añadida</p>
 		{% endif %}
 	</div>
 
+	<div><strong>Categoría:</strong></div>
+	
 	<div>
-		<div><strong>Categoría:</strong></div>
 		{% if datos["volumeInfo"]["categories"] %}
-		<li>{{datos["volumeInfo"]["categories"][0]}}</li>
+		<div>{{datos["volumeInfo"]["categories"][0]}}</div>
 		{% else %}
-		<li>No tiene establecida una categoría.</li>
+		<div>No tiene establecida una categoría.</div>
 		{% endif %}
 	
 	
-		<li><i>Nota Media:</i>{{datos['volumeInfo']['averageRating']}}</li>
-		<li><i>Votos:</i>{{datos["volumeInfo"]['ratingsCount']}}</li>
+		<div><i>Nota Media:</i>{{datos['volumeInfo']['averageRating']}}</div>
+		<div><i>Votos:</i>{{datos["volumeInfo"]['ratingsCount']}}</div>
 		
 		<div><strong>Precio:</strong></div>
 		<div>
 			{% if datos["saleInfo"]["listPrice"] %}
-			<li>{{datos["saleInfo"]["listPrice"]['amount']}}</li>
+			<div>{{datos["saleInfo"]["listPrice"]['amount']}}</div>
 			{% else %}
-			<li>No tiene establecido un precio.</li>
+			<div>No tiene establecido un precio.</div>
 			{% endif %}
 	
 			{% if datos["saleInfo"]["listPrice"] %}
-			<li><strong>{{datos["saleInfo"]["listPrice"]['currencyCode']}}</strong></li>
+			<div><strong>{{datos["saleInfo"]["listPrice"]['currencyCode']}}</strong></div>
 			{% else %}
-			<li>No tiene establecido una divisa.</li>
+			<div>No tiene establecido una divisa.</div>
 			{% endif %}
 			
 		</div>
