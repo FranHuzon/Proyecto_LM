@@ -87,6 +87,27 @@ def añadir(id_libro):
 	else:
 		return redirect('/entrar')
 
+@app.route('/eliminar/<id_libro>')
+def añadir(id_libro):
+	if token_valido():
+		token=json.loads(session["token"])
+		oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
+		url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/removeVolume"
+		payload={'volumeId':id_libro,'key':key}
+	
+		r=oauth2.post(url,params=payload)
+
+		if r.status_code==204:
+			return "Libro eliminado con éxito a su colección"
+		else:
+			return "Fallo"
+	else:
+		return redirect('/entrar')
+
+
+
+
+
 
 #### Oauth2
 redirect_uri = 'https://bookeando.herokuapp.com/google_callback'
