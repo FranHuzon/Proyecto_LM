@@ -2,23 +2,45 @@
 {%block detalles%}
 
 
+
 <ul>
-	<a href="{{datos['volumeInfo']['previewLink']}}">Muestra del libro</a>
-	<a href="{{datos['saleInfo']['buyLink']}}">Enlace de compra</a>
+	{% if datos["volumeInfo"]['previewLink'] %}
+	<li href="{{datos['volumeInfo']['previewLink']}}">Muestra del libro</li>
+	{% else %}
+	<li>No tiene enlace de muestra</li>
+	{% endif %}
+	{% if datos['saleInfo']['buyLink'] %}
+	<li href="{{datos['saleInfo']['buyLink']}}">Enlace de compra</li>
+	{% else %}
+	<li>No tiene enlace de compra</li>
+	{% endif %}
+	<!-- <a href="{{datos['saleInfo']['buyLink']}}">Enlace de compra</a> -->
 </ul>
 
-<p><strong>Título:</strong>{{datos["volumeInfo"]["title"]}}</p>
+<ul>
+	{% if datos["volumeInfo"]["title"] %}
+	<li><strong>Título:</strong>{{datos["volumeInfo"]["title"]}}</li>
+	{% else %}
+	<li>Sin título</li>
+	{% endif %}
+</ul>
+
+<!-- <p><strong>Título:</strong>{{datos["volumeInfo"]["title"]}}</p>
+ -->
 
 {% if datos["volumeInfo"]['imageLinks'] %}
 <img src="{{datos['volumeInfo']['imageLinks']['small']}}" alt="Imagen" />
- {% else %}
+{% else %}
  <img src="static/style/notfound.jpg" alt="Imagen"/>
 {% endif %}
 
 <ul>
 	<li><strong>Autores:</strong></li>
-	{% for j in datos["volumeInfo"]["authors"] %}<li>{{j}}</li>
-	{%endfor%}
+	{% if datos["volumeInfo"]["authors"] %}
+	{% for j in datos["volumeInfo"]["authors"] %}<li>{{j}}</li>{%endfor%}
+	{% else %}
+	<li>No hay autor/a especificado/a</li>
+	{% endif %}
 </ul>
 
 {% autoescape false %} 
@@ -26,16 +48,41 @@
 {% endautoescape %}
 
 
+<ul>
+	<li><strong>Categoría:</strong></li>
+	{% if datos["volumeInfo"]["categories"] %}
+	<li>{{datos["volumeInfo"]["categories"][0]}}</li>
+	{% else %}
+	<li>No tiene establecida una categoría.</li>
+	{% endif %}
 
-<p><strong>Categoría:</strong>{{datos["volumeInfo"]["categories"][0]}}</p>
 
-<p><strong>Nota Media:</strong>{{datos['volumeInfo']['averageRating']}}</p>
+	<li><i>Nota Media:</i>{{datos['volumeInfo']['averageRating']}}</li>
+	<li><i>Votos:</i>{{datos["volumeInfo"]['ratingsCount']}}</li>
+	
+	<li><strong>Precio:</strong></li>
+	{% if datos["saleInfo"]["listPrice"] %}
+	<li>{{datos["saleInfo"]["listPrice"]['amount']}}</li>
+	{% else %}
+	<li>No tiene establecido un precio.</li>
+	{% endif %}
 
-<p><i>Votos:</i>{{datos["volumeInfo"]['ratingsCount']}}</p>
+	<li><strong>Precio:</strong></li>
+	<div>
+		{% if datos["saleInfo"]["listPrice"] %}
+		<li>{{datos["saleInfo"]["listPrice"]['amount']}}</li>
+		{% else %}
+		<li>No tiene establecido un precio.</li>
+		{% endif %}
 
-<p><strong>Precio:</strong>{{datos["saleInfo"]["listPrice"]['amount']}}</p>
-
-<p><strong>{{datos["saleInfo"]["listPrice"]['currencyCode']}}</strong></p>
+		{% if datos["saleInfo"]["listPrice"] %}
+		<li><strong>{{datos["saleInfo"]["listPrice"]['currencyCode']}}</strong></li>
+		{% else %}
+		<li>No tiene establecido una divisa.</li>
+		{% endif %}
+		
+	</div>
+</ul>
 
 
 {%endblock%}
