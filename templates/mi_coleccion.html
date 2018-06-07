@@ -1,25 +1,21 @@
+<div id="menubar">
+  <ul id="menu">
+    <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+    <li><a href="/">Inicio</a></li>
+    <li class="selected"> <a href="/mi_coleccion">Mi Colección</a></li>
+    <li> <a href="/sugerencias">Sugerencias</a></li>
+    <li><a href="/contact.html">Contacto</a></li>
+  </ul>
+</div>
+
 {%extends "base.html"%}
 {%block coleccion%}
 <h1>Mi Colección</h1>
 {% for i in l %}
 <div>
 	<div>
-		<strong>Título:</strong>"{{i['volumeInfo']['title']}}"
+		<strong>Título:</strong> "{{i['volumeInfo']['title']}}" <a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
 	</div><br>
-
-	<div>
-		{% if i['id'] not in l %}
-		<div>Libro ya añadido</div>
-		{% else %} 
-		<a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir a Mi Colección</a>
-		{% endif %}
-
-		{% if i['id'] not in l %}
-		<a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
-		{% else %}
-		<div>Libro aún no añadido</div>
-		{% endif %}
-	</div>
 
 	<div>  
 		{% if i['volumeInfo']['imageLinks'] %} 
