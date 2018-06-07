@@ -4,8 +4,18 @@
 {% for i in l %}
 <div>
 	<div>
-		<strong>Título:</strong>"{{i['volumeInfo']['title']}}"<a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
-	</div>
+		<strong>Título:</strong>"{{i['volumeInfo']['title']}}"
+	</div><br>
+
+	<div>
+		{% if i['id'] not in l %}
+		<a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir a Mi Colección</a> <a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
+		{% else %} 
+		<div>Libro ya añadido</div>
+		{% if i['id'] not in l %}
+		<div>Libro aún no añadido</div>
+		{% else %}
+		<a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
 	<div>  
 		{% if i['volumeInfo']['imageLinks'] %} 
 		<a href="{{url_for('detalles',id_libro=i['id'])}}"><img src="{{i['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Miniatura" /></a>
