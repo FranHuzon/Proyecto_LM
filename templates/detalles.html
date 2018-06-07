@@ -18,7 +18,12 @@
 
 {% for j in datos["volumeInfo"]["authors"] %}<p>{{j}}</p>{%endfor%}
 
-<p>{{datos["volumeInfo"]['description']|e}}</p>
+
+{% autoescape false %} 
+   <p>{{datos["volumeInfo"]['description']}}</p>
+{% endautoescape %}
+
+
 
 <p>{{datos["volumeInfo"]["categories"][0]}}</p>
 
