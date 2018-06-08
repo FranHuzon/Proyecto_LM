@@ -84,7 +84,7 @@ def buscar():
 			lista=[]
 			for i in a["items"]:
 				lista.append(i)
-			return render_template('mostrar.html',l=lista,lc=lista_colecc)
+			return render_template('mostrar.html',l=lista)
 
 
 	

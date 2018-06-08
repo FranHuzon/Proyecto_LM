@@ -23,11 +23,16 @@
 	</div><br>
 	
 	<div>
-		{% if i['id'] not in lc %}
-		<a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir a Mi Colección</a>
+		{% if lc %}
+			{% if i['id'] not in lc %}
+			<a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir a Mi Colección</a>
+			{% else %} 
+			<a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
+			{% endif %}
 		{% else %} 
-		<a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
+			<div>Debes iniciar sesión si quieres añadir/eliminar libros en tu biblioteca</div>
 		{% endif %}
+		
 	</div><br>
 
 
