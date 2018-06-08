@@ -89,7 +89,7 @@ def detalles(id_libro):
 			for i in a["items"]:
 				lista_colecc.append(i["id"])	
 	else:
-		lista_colecc=None
+		lista_colecc=[]
 
 	url="https://www.googleapis.com/books/v1/volumes/"+id_libro
 	campos='saleInfo(buyLink,country,isEbook,listPrice),volumeInfo(authors,averageRating,categories,description,imageLinks/small,imageLinks/smallThumbnail,previewLink,ratingsCount,subtitle,title)'
