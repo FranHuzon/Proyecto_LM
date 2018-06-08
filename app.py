@@ -42,6 +42,7 @@ def sugerencias():
 
 @app.route('/buscar', methods=['GET', 'POST'])
 def buscar():
+	
 	if token_valido():
 		token=json.loads(session["token"])
 		oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
@@ -55,23 +56,38 @@ def buscar():
 			lista_colecc=[]
 			for i in a["items"]:
 				lista_colecc.append(i["id"])	
-	else:
-		lista_colecc=None
-
-
-	busca=request.form.get("buscar")
-	url="https://www.googleapis.com/books/v1/volumes"
-	busqueda=busca
-	campos='items(id,volumeInfo(authors,imageLinks/smallThumbnail,title))'
-	payload={'q':busqueda,'maxResults':'40','fields':campos,'key':key}
-	r=requests.get(url, params=payload)
 	
-	if r.status_code==200:
-		a=r.json()
-		lista=[]
-		for i in a["items"]:
-			lista.append(i)
-		return render_template('mostrar.html',l=lista,lc=lista_colecc)
+		busca=request.form.get("buscar")
+		url="https://www.googleapis.com/books/v1/volumes"
+		busqueda=busca
+		campos='items(id,volumeInfo(authors,imageLinks/smallThumbnail,title))'
+		payload={'q':busqueda,'maxResults':'40','fields':campos,'key':key}
+		r=requests.get(url, params=payload)
+		
+		if r.status_code==200:
+			a=r.json()
+			lista=[]
+			for i in a["items"]:
+				lista.append(i)
+			return render_template('mostrar.html',l=lista,lc=lista_colecc)
+
+	else:
+		busca=request.form.get("buscar")
+		url="https://www.googleapis.com/books/v1/volumes"
+		busqueda=busca
+		campos='items(id,volumeInfo(authors,imageLinks/smallThumbnail,title))'
+		payload={'q':busqueda,'maxResults':'40','fields':campos,'key':key}
+		r=requests.get(url, params=payload)
+		
+		if r.status_code==200:
+			a=r.json()
+			lista=[]
+			for i in a["items"]:
+				lista.append(i)
+			return render_template('mostrar.html',l=lista,lc=lista_colecc)
+
+
+	
 
 @app.route('/detalle/<id_libro>',methods=['GET', 'POST'])
 def detalles(id_libro):
