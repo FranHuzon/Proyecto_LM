@@ -12,12 +12,13 @@
 	</div><br>
 	
 	<div>
-		
+		{% for i in l %}
 		{% if i['id'] not in lc %}
 		<a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir a Mi Colección</a>
 		{% else %} 
 		<a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
 		{% endif %}
+		{%%}
 	</div><br>
 
 	
@@ -27,7 +28,7 @@
 		{% elif datos["volumeInfo"]['imageLinks'] and datos['volumeInfo']['imageLinks']['smallThumbnail'] %}
 		<img src="{{datos['volumeInfo']['imageLinks']['smallThumbnail']}}" alt="Imagen" />
 		{% else %}
-		 <img src="static/style/notfound.jpg" alt="Imagen"/>
+		<img src="static/style/notfound.jpg" alt="Imagen"/>
 		{% endif %}
 	</div>
 	
