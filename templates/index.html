@@ -1,4 +1,15 @@
 {%extends "base.html"%}
+{%block menu%}
+<div id="menubar">
+  <ul id="menu">
+    <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+    <li class="selected"><a href="/">Inicio</a></li>
+    <li> <a href="/mi_coleccion">Mi Colección</a></li>
+    <li> <a href="/sugerencias">Sugerencias</a></li>
+    <li><a href="/contact.html">Contacto</a></li>
+  </ul>
+</div>
+{%endblock%}
 
 {%block content%}
 <h1>BOOKEANDO</h1>
