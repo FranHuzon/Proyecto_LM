@@ -196,7 +196,8 @@ def get_token():
 
 @app.route('/logout')
 def salir():
-	session.pop("token",None)
+	#session.pop("token",None)
+	session.clear("token",None)
 	return redirect("/")
 
 
