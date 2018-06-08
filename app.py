@@ -42,6 +42,21 @@ def sugerencias():
 
 @app.route('/buscar', methods=['GET', 'POST'])
 def buscar():
+	if session["token"]:
+		url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/volumes"
+		campos='items(id)'
+		payload={'fields':campos,'key':key}
+		r=oauth2.get(url,params=payload)
+
+		if r.status_code==200:
+			a=r.json()
+			lista_colecc=[]
+			for i in a["items"]:
+				lista_colecc.append(i["id"])	
+	else
+		lista_colecc=None
+
+
 	busca=request.form.get("buscar")
 	url="https://www.googleapis.com/books/v1/volumes"
 	busqueda=busca
@@ -54,7 +69,7 @@ def buscar():
 		lista=[]
 		for i in a["items"]:
 			lista.append(i)
-		return render_template('mostrar.html',l=lista)
+		return render_template('mostrar.html',l=lista,lc=lista_colecc)
 
 @app.route('/detalle/<id_libro>',methods=['GET', 'POST'])
 def detalles(id_libro):

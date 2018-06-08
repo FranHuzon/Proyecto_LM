@@ -11,17 +11,12 @@
 	</div><br>
 	
 	<div>
-		{% if i['id'] not in l %}
+		
+		{% if i['id'] not in lc %}
 		<a href="{{url_for('añadir',id_libro=i['id'])}}" class="button alt">[+]Añadir a Mi Colección</a>
 		{% else %} 
-		<div>Libro ya añadido</div>
-		{% endif %}
-
-		{% if i['id'] not in l %}
 		<a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
-		{% else %}
-		<div>Libro aún no añadido</div>
-		{% endif %}
+		{% endif %
 	</div>
 
 
