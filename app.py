@@ -53,7 +53,7 @@ def buscar():
 			lista_colecc=[]
 			for i in a["items"]:
 				lista_colecc.append(i["id"])	
-	else
+	else:
 		lista_colecc=None
 
 
