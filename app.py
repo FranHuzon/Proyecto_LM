@@ -75,6 +75,22 @@ def buscar():
 
 @app.route('/detalle/<id_libro>',methods=['GET', 'POST'])
 def detalles(id_libro):
+	if token_valido():
+		token=json.loads(session["token"])
+		oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
+		url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/volumes"
+		campos='items(id)'
+		payload={'fields':campos,'key':key}
+		r=oauth2.get(url,params=payload)
+
+		if r.status_code==200:
+			a=r.json()
+			lista_colecc=[]
+			for i in a["items"]:
+				lista_colecc.append(i["id"])	
+	else:
+		lista_colecc=None
+
 	url="https://www.googleapis.com/books/v1/volumes/"+id_libro
 	campos='saleInfo(buyLink,country,isEbook,listPrice),volumeInfo(authors,averageRating,categories,description,imageLinks/small,imageLinks/smallThumbnail,previewLink,ratingsCount,subtitle,title)'
 	payload={'fields':campos,'key':key}
@@ -82,7 +98,7 @@ def detalles(id_libro):
 
 	if r.status_code==200:
 		datos=r.json()		
-		return render_template('detalles.html',datos=datos)
+		return render_template('detalles.html',datos=datos,lc=lista_colecc)
 
 
 
