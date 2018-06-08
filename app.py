@@ -42,7 +42,9 @@ def sugerencias():
 
 @app.route('/buscar', methods=['GET', 'POST'])
 def buscar():
-	if session["token"]:
+	if token_valido():
+		token=json.loads(session["token"])
+		oauth2 = OAuth2Session(os.environ["client_id"], token=token, scope=scope)
 		url="https://www.googleapis.com/books/v1/mylibrary/bookshelves/0/volumes"
 		campos='items(id)'
 		payload={'fields':campos,'key':key}
