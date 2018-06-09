@@ -193,6 +193,7 @@ def google():
 def token_valido():
 	try:
 		token=json.loads(session["token"])
+		print(token)
 	except:
 		token = False
 	if token:
