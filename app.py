@@ -212,7 +212,7 @@ def login():
 		return redirect("/")
 	else:
 		oauth2 = OAuth2Session(os.environ["client_id"], redirect_uri=redirect_uri,scope=scope)
-		authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth')
+		authorization_url, state = oauth2.authorization_url('https://accounts.google.com/o/oauth2/auth', prompt="select_account")
 		session.pop("token",None)
 		session["oauth_state"]=state
 		return redirect(authorization_url)  
