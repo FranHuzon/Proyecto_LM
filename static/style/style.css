@@ -5,6 +5,17 @@ html
 { margin: 0;
   padding: 0;}
 
+.boton_iniciar
+{ text-decoration: none;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 20px;
+  color: #ffffff;
+  background-color: #1883ba;
+  border-radius: 6px;
+  border: 2px solid #0016b0;}
+
+
 body
 { font: normal .80em 'trebuchet ms', arial, sans-serif;
   background: #EEE;
