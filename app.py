@@ -118,7 +118,7 @@ def detalles(id_libro):
 
 
 
-@app.route('/contact.html')
+@app.route('/contact.html',methods=['GET', 'POST'])
 def contacto():
 	return render_template("contact.html")
 
