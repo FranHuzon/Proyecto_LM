@@ -31,7 +31,7 @@ def sugerencias():
 			lista=[]
 			for i in a["items"]:
 				lista.append(i)
-			return render_template('sugerencias.html',l=lista)
+			return render_template('sugerencias.html',l=lista,token_valido=token_valido())
 		else:
 			return "fallo"
 	else:
@@ -69,7 +69,7 @@ def buscar():
 			lista=[]
 			for i in a["items"]:
 				lista.append(i)
-			return render_template('mostrar.html',l=lista,lc=lista_colecc)
+			return render_template('mostrar.html',l=lista,lc=lista_colecc,token_valido=token_valido())
 
 	else:
 		busca=request.form.get("buscar")
@@ -84,7 +84,7 @@ def buscar():
 			lista=[]
 			for i in a["items"]:
 				lista.append(i)
-			return render_template('mostrar.html',l=lista)
+			return render_template('mostrar.html',l=lista,token_valido=token_valido())
 
 
 	
@@ -114,16 +114,16 @@ def detalles(id_libro):
 
 	if r.status_code==200:
 		datos=r.json()		
-		return render_template('detalles.html',datos=datos,lc=lista_colecc)
+		return render_template('detalles.html',datos=datos,lc=lista_colecc,token_valido=token_valido())
 
 
 
 @app.route('/contact.html',methods=['GET', 'POST'])
 def contacto():
-	return render_template("contact.html")
+	return render_template("contact.html",token_valido=token_valido())
 
 def exito():
-	return render_template("exito.html")
+	return render_template("exito.html",token_valido=token_valido())
 
 @app.route('/mi_coleccion')
 def coleccion():
@@ -141,7 +141,7 @@ def coleccion():
 			lista=[]
 			for i in a["items"]:
 				lista.append(i)
-			return render_template('mi_coleccion.html',l=lista)
+			return render_template('mi_coleccion.html',l=lista,token_valido=token_valido())
 		else:
 			return "fallo"
 	else:
