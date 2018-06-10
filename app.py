@@ -125,10 +125,8 @@ def contacto():
 def exito():
 	return render_template("exito.html",token_valido=token_valido())
 
-@app.route('exito.html')
+@app.route('/exito.html')
 	return render_template("exito.html",token_valido=token_valido())
-
-
 
 @app.route('/mi_coleccion')
 def coleccion():
