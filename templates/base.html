@@ -16,7 +16,7 @@
           <!-- class="logo_colour", allows you to change the colour of the text -->
           <h1><a href="/">BOOKEANDO<span class="logo_colour"></span></a></h1>
           <h2>Buscador de libros</h2>
-          {% if token_valido %}
+          {% if not token_valido %}
           <a class="boton_iniciar" href="/entrar">Iniciar Sesión</a>
           {% else %}
           <a class="boton_iniciar" href="/logout">Cerrar Sesión</a>
