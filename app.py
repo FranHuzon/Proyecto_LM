@@ -222,7 +222,7 @@ def get_token():
 	oauth2 = OAuth2Session(os.environ["client_id"], state=session["oauth_state"],redirect_uri=redirect_uri)
 	token = oauth2.fetch_token(token_url, client_secret=os.environ["client_secret"],authorization_response=request.url[:4]+"s"+request.url[4:])
 	session["token"]=json.dumps(token)
-	return redirect("/mi_coleccion")
+	return redirect("/")
 
 
 
