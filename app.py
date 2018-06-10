@@ -11,7 +11,7 @@ app.secret_key= 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 @app.route('/')
 def inicio():
-	return render_template("index.html")
+	return render_template("index.html", token_valido=token_valido())
 
 
 @app.route('/sugerencias')
