@@ -122,11 +122,12 @@ def detalles(id_libro):
 def contacto():
 	return render_template("contact.html",token_valido=token_valido())
 
-def exito():
-	return render_template("exito.html",token_valido=token_valido())
+
 
 @app.route('/exito.html')
+def exito():
 	return render_template("exito.html",token_valido=token_valido())
+	
 
 @app.route('/mi_coleccion')
 def coleccion():
