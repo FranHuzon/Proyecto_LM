@@ -17,9 +17,9 @@
           <h1><a href="/">BOOKEANDO<span class="logo_colour"></span></a></h1>
           <h2>Buscador de libros</h2>
           {% if not token_valido %}
-          <input class="boton_iniciar" href="/entrar">Iniciar Sesión</input>
+          <input type="button" class="boton_iniciar" href="/entrar">Iniciar Sesión</input>
           {% else %}
-          <input class="boton_iniciar" href="/logout">Cerrar Sesión</input>
+          <input type="button" class="boton_iniciar" href="/logout">Cerrar Sesión</input>
           {% endif %}
         </div>
       </div>
