@@ -157,7 +157,7 @@ def añadir(id_libro):
 		r=oauth2.post(url,params=payload)
 
 		if r.status_code==204:
-			return flash("Libro añadido con éxito a su colección")
+			return "Libro añadido con éxito a su colección"
 		else:
 			return "Fallo"
 	else:
@@ -174,7 +174,7 @@ def eliminar(id_libro):
 		r=oauth2.post(url,params=payload)
 
 		if r.status_code==204:
-			return flash("Libro eliminado con éxito de su colección")
+			return "Libro eliminado con éxito de su colección"
 		else:
 			return "Fallo"
 	else:
@@ -233,59 +233,59 @@ def salir():
 	return redirect("/")
 
 
-##### Oauth twitter
-#
-#def get_request_token_oauth1():
-#    oauth = OAuth1(os.environ["CONSUMER_KEY"],
-#                  client_secret=os.environ["CONSUMER_SECRET"])
-#    r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
-#    credentials = parse_qs(r.content)
-#    return credentials.get(b'oauth_token')[0],credentials.get(b'oauth_token_secret')[0]
-#
-#def get_access_token_oauth1(request_token,request_token_secret,verifier):
-#    oauth = OAuth1(os.environ["CONSUMER_KEY"],
-#                   client_secret=os.environ["CONSUMER_SECRET"],
-#                   resource_owner_key=request_token,
-#                   resource_owner_secret=request_token_secret,
-#                   verifier=verifier,)
-#  
-#      
-#    r = requests.post(url=ACCESS_TOKEN_URL, auth=oauth)
-#    credentials = parse_qs(r.content)
-#    return credentials.get(b'oauth_token')[0],credentials.get(b'oauth_token_secret')[0]
-#
-#@app.route('/twitter')
-#def twitter():
-#    request_token,request_token_secret = get_request_token_oauth1()
-#    authorize_url = AUTHENTICATE_URL + request_token.decode("utf-8")
-#    session["request_token"]=request_token.decode("utf-8")
-#    session["request_token_secret"]=request_token_secret.decode("utf-8")
-#    return render_template("oauth1.html",authorize_url=authorize_url)
-#
-#@app.route('/twitter_callback')
-#def twitter_callback():
-#    request_token=session["request_token"]
-#    request_token_secret=session["request_token_secret"]
-#    verifier  = request.args.get("oauth_verifier")
-#    access_token,access_token_secret= get_access_token_oauth1(request_token,request_token_secret,verifier)
-#    session["access_token"]= access_token.decode("utf-8")
-#    session["access_token_secret"]= access_token_secret.decode("utf-8")
-#    return redirect('/vertweet')
-#
-#@app.route('/vertweet')
-#def vertweet():
-#    access_token=session["access_token"]
-#    access_token_secret=session["access_token_secret"]
-#    oauth = OAuth1(os.environ["CONSUMER_KEY"],
-#                   client_secret=os.environ["CONSUMER_SECRET"],
-#                   resource_owner_key=access_token,
-#                   resource_owner_secret=access_token_secret)
-#    url = 'https://api.twitter.com/1.1/statuses/home_timeline.json'
-#    r = requests.get(url=url,auth=oauth)
-#    if r.status_code==200:
-#        return render_template("vertweet.html",datos=r.json())
-#    else:
-#return redirect("/twitter")
+#### Oauth twitter
+
+def get_request_token_oauth1():
+    oauth = OAuth1(os.environ["CONSUMER_KEY"],
+                  client_secret=os.environ["CONSUMER_SECRET"])
+    r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
+    credentials = parse_qs(r.content)
+    return credentials.get(b'oauth_token')[0],credentials.get(b'oauth_token_secret')[0]
+
+def get_access_token_oauth1(request_token,request_token_secret,verifier):
+    oauth = OAuth1(os.environ["CONSUMER_KEY"],
+                   client_secret=os.environ["CONSUMER_SECRET"],
+                   resource_owner_key=request_token,
+                   resource_owner_secret=request_token_secret,
+                   verifier=verifier,)
+  
+      
+    r = requests.post(url=ACCESS_TOKEN_URL, auth=oauth)
+    credentials = parse_qs(r.content)
+    return credentials.get(b'oauth_token')[0],credentials.get(b'oauth_token_secret')[0]
+
+@app.route('/twitter')
+def twitter():
+    request_token,request_token_secret = get_request_token_oauth1()
+    authorize_url = AUTHENTICATE_URL + request_token.decode("utf-8")
+    session["request_token"]=request_token.decode("utf-8")
+    session["request_token_secret"]=request_token_secret.decode("utf-8")
+    return render_template("oauth1.html",authorize_url=authorize_url)
+
+@app.route('/twitter_callback')
+def twitter_callback():
+    request_token=session["request_token"]
+    request_token_secret=session["request_token_secret"]
+    verifier  = request.args.get("oauth_verifier")
+    access_token,access_token_secret= get_access_token_oauth1(request_token,request_token_secret,verifier)
+    session["access_token"]= access_token.decode("utf-8")
+    session["access_token_secret"]= access_token_secret.decode("utf-8")
+    return redirect('/vertweet')
+
+@app.route('/vertweet')
+def vertweet():
+    access_token=session["access_token"]
+    access_token_secret=session["access_token_secret"]
+    oauth = OAuth1(os.environ["CONSUMER_KEY"],
+                   client_secret=os.environ["CONSUMER_SECRET"],
+                   resource_owner_key=access_token,
+                   resource_owner_secret=access_token_secret)
+    url = 'https://api.twitter.com/1.1/statuses/home_timeline.json'
+    r = requests.get(url=url,auth=oauth)
+    if r.status_code==200:
+        return render_template("vertweet.html",datos=r.json())
+    else:
+return redirect("/twitter")
 
 
 
