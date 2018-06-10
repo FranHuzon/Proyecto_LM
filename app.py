@@ -122,6 +122,8 @@ def detalles(id_libro):
 def contacto():
 	return render_template("contact.html")
 
+def exito():
+	return render_template("exito.html")
 
 @app.route('/mi_coleccion')
 def coleccion():
