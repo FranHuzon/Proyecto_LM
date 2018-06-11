@@ -13,10 +13,9 @@
 
 {%block content%}
 <h1>BOOKEANDO</h1>
-<form action='/buscar', method='post'>
+<form action='/buscar' method='post'>
   Inserta búsqueda:<br>
-  <input class="search" type="text" placeholder="Introduce título o autor" name="buscar" required="Debes introducir alguna información." />
+  <input class="search" type="text" placeholder="Introduce título o autor" name="buscar" required />
   <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="/static/style/lupa.png" alt="Search" title="Search" />
-  </br>
 </form>
 {%endblock%}

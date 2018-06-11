@@ -40,7 +40,7 @@ def sugerencias():
 
 
 
-@app.route('/buscar', methods=['GET', 'POST'])
+@app.route('/buscar', methods=['GET','POST'])
 def buscar():
 	
 	if token_valido():
