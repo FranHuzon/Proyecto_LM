@@ -75,7 +75,7 @@
 	
 	<div>
 		{% if datos['volumeInfo']['description'] %}
-		{% autoescape false %}<p>{{datos['volumeInfo']['description']}}</p>{% endautoescape %}
+		{% autoescape false %}<div>{{datos['volumeInfo']['description']}}</div>{% endautoescape %}
 		{% else %}
 		<div>No contiene información</div>
 		{% endif %}
