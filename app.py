@@ -346,7 +346,7 @@ def callback():
 
 @app.route('/twittear')
 def twittear():
-	update='HOLA FRAN'
+	update='Si buscas un buscador de libros BOOKEANDO es el tuyo. http://bookeando.herokuapp.com/'
 	post = {"status": update}
 	access_token=session["access_token"]
 	access_token_secret=session["access_token_secret"]
