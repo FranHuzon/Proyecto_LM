@@ -316,17 +316,13 @@ CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
 
 
 def get_request_token_oauth1():
-	oauth = OAuth1(CONSUMER_KEY,
-				client_secret=CONSUMER_SECRET)
+	oauth = OAuth1(CONSUMER_KEY,client_secret=CONSUMER_SECRET)
 	r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
 	credentials = parse_qs(r.content)
 	return credentials.get(b'oauth_token')[0]
 
 def get_access_token_oauth1(request_token,verifier):
-	oauth = OAuth1(CONSUMER_KEY,
-					client_secret=CONSUMER_SECRET,
-					resource_owner_key=request_token,
-					verifier=verifier,)
+	oauth = OAuth1(CONSUMER_KEY,client_secret=CONSUMER_SECRET,resource_owner_key=request_token,verifier=verifier,)
 	r = requests.post(url=ACCESS_TOKEN_URL, auth=oauth)
 	credentials = parse_qs(r.content)
 	session["screen_name"] = credentials.get(b'screen_name')[0]
@@ -354,10 +350,7 @@ def twittear():
 	post = {"status": update}
 	access_token=session["access_token"]
 	access_token_secret=session["access_token_secret"]
-	oauth = OAuth1(CONSUMER_KEY,
-				client_secret=CONSUMER_SECRET,
-				resource_owner_key=access_token,
-				resource_owner_secret=access_token_secret)
+	oauth = OAuth1(CONSUMER_KEY,client_secret=CONSUMER_SECRET,resource_owner_key=access_token,resource_owner_secret=access_token_secret)
 	r=requests.post(UPDATE_URL, data=post, auth=oauth)
 	if r.status_code==200:
 		return redirect("https://twitter.com/#!/%s" % session["screen_name"])
