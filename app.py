@@ -322,7 +322,7 @@ def get_request_token_oauth1():
 	return credentials.get(b'oauth_token')[0]
 
 def get_access_token_oauth1(request_token,verifier):
-	oauth = OAuth1(CONSUMER_KEY,client_secret=CONSUMER_SECRET,resource_owner_key=request_token,verifier=verifier,)
+	oauth = OAuth1(CONSUMER_KEY,client_secret=CONSUMER_SECRET,resource_owner_key=request_token,verifier=verifier)
 	r = requests.post(url=ACCESS_TOKEN_URL, auth=oauth)
 	credentials = parse_qs(r.content)
 	session["screen_name"] = credentials.get(b'screen_name')[0]
