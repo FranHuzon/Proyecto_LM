@@ -305,8 +305,7 @@ def salir():
 #	else:
 #		return redirect("/twitter")
 #
-from requests_oauthlib import OAuth1
-from urllib.parse import parse_qs
+
 
 REQUEST_TOKEN_URL = "https://api.twitter.com/oauth/request_token"
 AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token="
