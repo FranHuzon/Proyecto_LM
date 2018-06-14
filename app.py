@@ -243,69 +243,127 @@ def salir():
 ##### Oauth twitter
 
 
+#REQUEST_TOKEN_URL = "https://api.twitter.com/oauth/request_token"
+#AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token="
+#ACCESS_TOKEN_URL = "https://api.twitter.com/oauth/access_token"
+#
+#CONSUMER_KEY = os.environ.get('consumer_key')
+#CONSUMER_SECRET = os.environ.get('consumer_secret')
+#
+#TOKENS = {}
+#
+#
+#def get_request_token_oauth1():
+#	oauth = OAuth1(os.environ["CONSUMER_KEY"],
+#				client_secret=os.environ["CONSUMER_SECRET"])
+#	r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
+#	credentials = parse_qs(r.content)
+#	return credentials.get(b'oauth_token')[0],credentials.get(b'oauth_token_secret')[0]
+#
+#def get_access_token_oauth1(request_token,request_token_secret,verifier):
+#	oauth = OAuth1(os.environ["CONSUMER_KEY"],
+#				client_secret=os.environ["CONSUMER_SECRET"],
+#				resource_owner_key=request_token,
+#				resource_owner_secret=request_token_secret,
+#				verifier=verifier,)
+#	
+#	r = requests.post(url=ACCESS_TOKEN_URL, auth=oauth)
+#	credentials = parse_qs(r.content)
+#	return credentials.get(b'oauth_token')[0],credentials.get(b'oauth_token_secret')[0]
+#
+#@app.route('/twitter')
+#def twitter():
+#	request_token,request_token_secret = get_request_token_oauth1()
+#	authorize_url = AUTHENTICATE_URL + request_token.decode("utf-8")
+#	session["request_token"]=request_token.decode("utf-8")
+#	session["request_token_secret"]=request_token_secret.decode("utf-8")
+#	return redirect("/twitter_callback")
+#
+#@app.route('/twitter_callback')
+#def twitter_callback():
+#	request_token=session["request_token"]
+#	request_token_secret=session["request_token_secret"]
+#	verifier  = request.args.get("oauth_verifier")
+#	access_token,access_token_secret= get_access_token_oauth1(request_token,request_token_secret,verifier)
+#	session["access_token"]= access_token.decode("utf-8")
+#	session["access_token_secret"]= access_token_secret.decode("utf-8")
+#	return redirect('/enviartweet')
+#
+#@app.route('/enviartweet')
+#def enviartweet():
+#	access_token=session["access_token"]
+#	access_token_secret=session["access_token_secret"]
+#	oauth = OAuth1(os.environ["CONSUMER_KEY"],
+#				client_secret=os.environ["CONSUMER_SECRET"],
+#				resource_owner_key=access_token,
+#				resource_owner_secret=access_token_secret)
+#	url='https://api.twitter.com/1.1/statuses/update.json'
+#	data={"status":"Si lo que buscas es un buscador de libros usa BOOKEANDO!!! http://bookeando.herokuapp.com/"}
+#	r=requests.post(url=url,data=data,auth=oauth)
+#	if r.status_code==200:
+#		return render_template("exito.html",datos=r.json())
+#	else:
+#		return redirect("/twitter")
+#
+from requests_oauthlib import OAuth1
+from urllib.parse import parse_qs
+
 REQUEST_TOKEN_URL = "https://api.twitter.com/oauth/request_token"
 AUTHENTICATE_URL = "https://api.twitter.com/oauth/authenticate?oauth_token="
 ACCESS_TOKEN_URL = "https://api.twitter.com/oauth/access_token"
-
-CONSUMER_KEY = os.environ.get('consumer_key')
-CONSUMER_SECRET = os.environ.get('consumer_secret')
-
-TOKENS = {}
+UPDATE_URL = 'https://api.twitter.com/1.1/statuses/update.json'
+CONSUMER_KEY = os.environ['CONSUMER_KEY']
+CONSUMER_SECRET = os.environ['CONSUMER_SECRET']
 
 
 def get_request_token_oauth1():
-	oauth = OAuth1(os.environ["CONSUMER_KEY"],
-				client_secret=os.environ["CONSUMER_SECRET"])
+	oauth = OAuth1(CONSUMER_KEY,
+				client_secret=CONSUMER_SECRET)
 	r = requests.post(url=REQUEST_TOKEN_URL, auth=oauth)
 	credentials = parse_qs(r.content)
-	return credentials.get(b'oauth_token')[0],credentials.get(b'oauth_token_secret')[0]
+	return credentials.get(b'oauth_token')[0]
 
-def get_access_token_oauth1(request_token,request_token_secret,verifier):
-	oauth = OAuth1(os.environ["CONSUMER_KEY"],
-				client_secret=os.environ["CONSUMER_SECRET"],
-				resource_owner_key=request_token,
-				resource_owner_secret=request_token_secret,
-				verifier=verifier,)
-	
+def get_access_token_oauth1(request_token,verifier):
+	oauth = OAuth1(CONSUMER_KEY,
+					client_secret=CONSUMER_SECRET,
+					resource_owner_key=request_token,
+					verifier=verifier,)
 	r = requests.post(url=ACCESS_TOKEN_URL, auth=oauth)
 	credentials = parse_qs(r.content)
+	session["screen_name"] = credentials.get(b'screen_name')[0]
 	return credentials.get(b'oauth_token')[0],credentials.get(b'oauth_token_secret')[0]
 
 @app.route('/twitter')
 def twitter():
-	request_token,request_token_secret = get_request_token_oauth1()
+	request_token = get_request_token_oauth1()
 	authorize_url = AUTHENTICATE_URL + request_token.decode("utf-8")
 	session["request_token"]=request_token.decode("utf-8")
-	session["request_token_secret"]=request_token_secret.decode("utf-8")
-	return redirect("/twitter_callback")
+	return redirect(authorize_url)
 
 @app.route('/twitter_callback')
-def twitter_callback():
+def callback():
 	request_token=session["request_token"]
-	request_token_secret=session["request_token_secret"]
 	verifier  = request.args.get("oauth_verifier")
-	access_token,access_token_secret= get_access_token_oauth1(request_token,request_token_secret,verifier)
+	access_token,access_token_secret= get_access_token_oauth1(request_token,verifier)
 	session["access_token"]= access_token.decode("utf-8")
 	session["access_token_secret"]= access_token_secret.decode("utf-8")
-	return redirect('/enviartweet')
+	return redirect('/twittear')
 
-@app.route('/enviartweet')
-def enviartweet():
+@app.route('/twittear')
+def twittear():
+	update='HOLA FRAN'
+	post = {"status": update}
 	access_token=session["access_token"]
 	access_token_secret=session["access_token_secret"]
-	oauth = OAuth1(os.environ["CONSUMER_KEY"],
-				client_secret=os.environ["CONSUMER_SECRET"],
+	oauth = OAuth1(CONSUMER_KEY,
+				client_secret=CONSUMER_SECRET,
 				resource_owner_key=access_token,
 				resource_owner_secret=access_token_secret)
-	url='https://api.twitter.com/1.1/statuses/update.json'
-	data={"status":"Si lo que buscas es un buscador de libros usa BOOKEANDO!!! http://bookeando.herokuapp.com/"}
-	r=requests.post(url=url,data=data,auth=oauth)
+	r=requests.post(UPDATE_URL, data=post, auth=oauth)
 	if r.status_code==200:
-		return render_template("exito.html",datos=r.json())
+		return redirect("https://twitter.com/#!/%s" % session["screen_name"])
 	else:
-		return redirect("/twitter")
-
-
+		return redirect('/twitter')
 
 if __name__ == '__main__':
 	port=os.environ["PORT"]    
