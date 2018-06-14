@@ -3,33 +3,43 @@ Nombre del proyecto: Bookeando
 
 Objetivos, descripción y funcionalidad del proyecto:
 
-	- Búsquedas concretas por título, autor, categoría literaria, etc.
-	- Sistema de reseñas/valoraciones.
-	- Creación de una librería propia del usuario con diferentes categorías, pudiendo eliminar libros, añadirlos, cambiarles la categoría, etc.
-	- Publicar en twitter recomendaciones y reseñas.
+	- Búsquedas de libros.
+	- Creación de una librería propia del usuario pudiendo eliminar libros y  añadirlos.
+	- Aparatado de sugerencias.
+	- Recomendar la página vía twitter.
 
 URL del repositorio GitHub: https://github.com/FranHuzon/Proyecto_LM
 
 URL de la página web: https://www.bookeando.herokuapp.com
 
-¿Cuántas API web vas a usar en el proyecto?: En principio 2, OpenLibra y API Google Books.
-	
-	URL de la API(s) utilizada(s): 
+¿Cuántas API web vas a usar en el proyecto?:
 
-		- https://developers.google.com/books/?hl=es-419
-		- https://openlibra.com/es/page/public-api
+	-  API Google Books   https://developers.google.com/books/?hl=es-419
 	
-	Lenguaje(s) de marcas que utiliza(n) la(s) API: JSON/JSONP
+	-  API Twitter        https://developer.twitter.com/en/docs/
 	
-	¿Qué tipo de autentificación tiene(n) la(s) API utilizada(s)?: Oauth 2.0 para API Google Books.
 	
-	¿Qué métodos vas a usar en las llamada a la API?: GET,POST,DELETE,PUT
+	Lenguaje(s) de marcas que utiliza(n) la(s) API: JSON
+	
+¿Qué tipo de autentificación tiene(n) la(s) API utilizada(s)?:
 
-¿Cuantas cosas hace la aplicación?, podemos pensar cuantos @route va a tener nuestro programa Flask: Como mínimo 4 o 5.
+	- La aplicación usa API KEY, OAUTH1 y OAUTH2 para diferentes acciones.
+	
+¿Qué métodos vas a usar en las llamada a la API?: 
 
-¿Vas a hacer una página web válida y con hoja de estilo?: Si.
+	- GET y POST
+
+¿Cuantas cosas hace la aplicación?, podemos pensar cuantos @route va a tener nuestro programa Flask: 
+
+	- Mi app contiene al menos 9 @routes, sin contar las de OAUTH.
+
+¿Vas a hacer una página web válida y con hoja de estilo?:
+
+	-  Ya está validada.
 
 Comenta cualquier cosa que crees que puedes hacerte conseguir un 10 en el proyecto:
 
-	Creo que es un proyecto original y útil para los amantes de la lectura, sobretodo el apartado de la librería propia de cada usuario y poder
-	publicar reseñas en twitter.
+	- Creo que es un proyecto que se puede mejorar mucho con más funcionalidades de las API,
+	  pero la idea del proyecto en sí, es original y no tiene muchos precedentes a lo largo de
+	  este ciclo.
+	
