@@ -13,7 +13,7 @@
 
 {%block coleccion%}
 <h1>Mi Colección</h1>
-{% if not l %}
+{% if l=="No" %}
 	<p>Usted no tiene libros añadidos en su colección</p>
 {% else %}
 	{% for i in l %}
