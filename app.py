@@ -55,8 +55,11 @@ def buscar():
 		if r.status_code==200:
 			a=r.json()
 			lista_colecc=[]
-			for i in a["items"]:
-				lista_colecc.append(i["id"])	
+			if not "items" in lista_colecc:
+				aviso="No"
+			else:	
+				for i in a["items"]:
+					lista_colecc.append(i["id"])	
 	
 		busca=request.form.get("buscar")
 		url="https://www.googleapis.com/books/v1/volumes"
