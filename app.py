@@ -106,8 +106,11 @@ def detalles(id_libro):
 		if r.status_code==200:
 			a=r.json()
 			lista_colecc=[]
-			for i in a["items"]:
-				lista_colecc.append(i["id"])	
+			if not "items" in lista_colecc:
+				aviso="No"
+			else:
+				for i in a["items"]:
+					lista_colecc.append(i["id"])	
 	else:
 		lista_colecc=None
 
