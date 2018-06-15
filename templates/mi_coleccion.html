@@ -19,7 +19,11 @@
 	{% for i in l %}
 	<div>
 		<div>
+			{% if i['volumeInfo']['title'] %}
 			<strong>Título:</strong> "{{i['volumeInfo']['title']}}" <a href="{{url_for('eliminar',id_libro=i['id'])}}" class="button alt">[+]Eliminar</a>
+			{% else %}
+			<h1>Sin título</h1>
+			{% endif %}
 		</div><br>
 	
 		<div>  
