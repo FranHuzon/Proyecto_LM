@@ -144,9 +144,13 @@ def coleccion():
 		if r.status_code==200:
 			a=r.json()
 			lista=[]
-			for i in a["items"]:
-				lista.append(i)
-			return render_template('mi_coleccion.html',l=lista,token_valido=token_valido())
+			if not a["items"]:
+				aviso="No tiene ningún libro en su colección."
+				return render_template('mi_coleccion.html',l=aviso,token_valido=token_valido())
+			else:	
+				for i in a["items"]:
+					lista.append(i)
+				return render_template('mi_coleccion.html',l=lista,token_valido=token_valido())
 		else:
 			return "fallo"
 	else:
