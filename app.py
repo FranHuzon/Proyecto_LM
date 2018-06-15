@@ -145,7 +145,7 @@ def coleccion():
 			a=r.json()
 			lista=[]
 			if not "items" in a:
-				aviso="No tiene ningún libro en su colección."
+				aviso="No"
 				return render_template('mi_coleccion.html',l=aviso,token_valido=token_valido())
 			else:	
 				for i in a["items"]:
