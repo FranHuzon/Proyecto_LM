@@ -144,7 +144,7 @@ def coleccion():
 		if r.status_code==200:
 			a=r.json()
 			lista=[]
-			if a["items"] not in a:
+			if not "items" in a:
 				aviso="No tiene ningún libro en su colección."
 				return render_template('mi_coleccion.html',l=aviso,token_valido=token_valido())
 			else:	
